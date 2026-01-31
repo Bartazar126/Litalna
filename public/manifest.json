@@ -1,0 +1,27 @@
+{
+  "name": "Honlapkészítő - Professzionális Weboldal Fejlesztés",
+  "short_name": "Honlapkészítő",
+  "description": "Weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, mobilbarát, SEO optimalizált.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080b14",
+  "theme_color": "#080b14",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "hu",
+  "dir": "ltr"
+}
