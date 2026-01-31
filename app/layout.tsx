@@ -6,11 +6,15 @@ import StructuredData from "@/components/StructuredData";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Font betöltés optimalizálás
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Csak ha kell
 });
 
 export const metadata: Metadata = {
@@ -106,8 +110,14 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Honlapkészítő" />
         
-        {/* Google Tag Manager - Replace GTM-XXXXXX with your actual GTM ID */}
+        {/* Preconnect for faster 3rd party loads */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        
+        {/* Google Tag Manager - Defer for better PageSpeed */}
         <script
+          defer
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -117,12 +127,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         
-        {/* Google Ads Conversion Tracking - Add your Google Ads ID */}
+        {/* Google Ads - Defer for performance */}
         <script
-          async
+          defer
           src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXXX"
         />
         <script
+          defer
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -130,7 +141,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               gtag('js', new Date());
               gtag('config', 'AW-XXXXXXXXXX');
               
-              // Cookie consent default
               gtag('consent', 'default', {
                 'analytics_storage': 'denied',
                 'ad_storage': 'denied',

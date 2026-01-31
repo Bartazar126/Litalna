@@ -9,7 +9,8 @@ export default function ParticleBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    // Performance: hardware acceleration
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return;
 
     // Set canvas size
@@ -18,7 +19,14 @@ export default function ParticleBackground() {
       canvas.height = window.innerHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    
+    // Debounced resize for performance
+    let resizeTimeout: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resizeCanvas, 150);
+    };
+    window.addEventListener('resize', debouncedResize, { passive: true });
 
     // Particle class
     class Particle {
