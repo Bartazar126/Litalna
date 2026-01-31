@@ -6,12 +6,12 @@ import TrustBadges from './TrustBadges';
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#080b14] via-[#0f1529] to-[#080b14]">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-25"></div>
+      {/* Grid pattern - HIDDEN on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-25 hidden md:block"></div>
 
-      {/* Simplified gradient orbs - static for better performance */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl opacity-30"></div>
+      {/* Gradient orbs - HIDDEN on mobile for 90+ performance */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl opacity-30 hidden md:block"></div>
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl opacity-30 hidden md:block"></div>
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
         {/* Badge - CSS animation only */}
