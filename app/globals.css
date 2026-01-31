@@ -52,9 +52,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Glassmorphism Utilities - Mobile optimized */
+/* Glassmorphism base - Mobile optimized */
 .glass {
-  background: var(--card-bg);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
@@ -68,14 +68,15 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Mobile: NO backdrop-filter (kills performance) */
+/* Mobile: NO backdrop-filter for 90+ performance */
 @media (max-width: 768px) {
   .glass,
   .glass-hover,
   .glass-dark {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(15, 23, 42, 0.95) !important;
+    /* Slightly simplified but keep basic structure */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(15, 23, 42, 0.95);
   }
 }
 

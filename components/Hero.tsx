@@ -14,14 +14,14 @@ export default function Hero() {
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl opacity-30 hidden md:block"></div>
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        {/* Badge - CSS animation only */}
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg animate-fade-in">
+        {/* Badge - Static on mobile, animate on desktop */}
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg md:animate-fade-in">
           <Zap className="w-4 h-4 text-blue-400" />
           <span className="text-sm font-semibold text-gray-200">Gyors, megbízható, professzionális</span>
         </div>
 
-        {/* Main Heading - CSS animation */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        {/* Main Heading - Static on mobile, animate on desktop */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight md:animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <span className="block text-white">
             A weboldalad
           </span>
@@ -30,17 +30,17 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subheading */}
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 max-w-3xl mx-auto font-normal leading-relaxed px-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        {/* Subheading - Static on mobile, animate on desktop */}
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 max-w-3xl mx-auto font-normal leading-relaxed px-4 md:animate-fade-in" style={{ animationDelay: '0.2s' }}>
           Modern weboldalak <span className="text-white font-semibold">gyors átfutással és fix határidővel.</span> Nem kell hónapokat várnod - mi 1-2 hét alatt leadjuk a kész projektet.
         </p>
 
-        <p className="text-sm sm:text-base md:text-lg text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <p className="text-sm sm:text-base md:text-lg text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 md:animate-fade-in" style={{ animationDelay: '0.3s' }}>
           <span className="text-white font-semibold">2-3 órán belül válaszolunk</span> minden megkeresésre. Minden nap elérhetőek vagyunk. Next.js/React technológia, keresőoptimalizálás, mobilra optimalizált, villámgyors teljesítmény.
         </p>
 
-        {/* CTA Buttons - CSS animation */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        {/* CTA Buttons - Static on mobile, animate on desktop */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 md:animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <a
             href="/ajanlat"
             className="group relative bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 text-white px-8 py-4 rounded-xl text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/50 flex items-center justify-center gap-2 w-full sm:w-auto overflow-hidden hover:scale-105 active:scale-95"
@@ -61,7 +61,7 @@ export default function Hero() {
 
 
         {/* Trust indicators + Features */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-0 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-0 md:animate-fade-in" style={{ animationDelay: '0.5s' }}>
           {/* Main stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {[
@@ -101,12 +101,12 @@ export default function Hero() {
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-12 mb-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+        <div className="mt-12 mb-8 md:animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <TrustBadges />
         </div>
 
         {/* Trust Bar */}
-        <div className="glass border border-blue-500/15 rounded-xl p-6 text-center animate-fade-in" style={{ animationDelay: '0.7s' }}>
+        <div className="glass border border-blue-500/15 rounded-xl p-6 text-center md:animate-fade-in" style={{ animationDelay: '0.7s' }}>
           <p className="text-gray-300 text-sm sm:text-base">
             <span className="text-white font-semibold">Tapasztalt fejlesztő csapatunk</span> építi a projektedet. Nincs ügynökségi árszabás, nincs hónapos várakozás. Kapsz egy ingyenes konzultációt, ahol megbeszéljük mit akarsz, aztán elkezdjük építeni.
           </p>
