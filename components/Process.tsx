@@ -1,9 +1,6 @@
 'use client';
 
 import { Check } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 
 const steps = [
   {
@@ -45,53 +42,41 @@ const steps = [
 ];
 
 export default function Process() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#030712] via-[#0a0a1f] to-[#030712] relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 grid-pattern opacity-30"></div>
+      {/* Background - Hidden on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-30 hidden md:block"></div>
       
-      {/* Gradient orbs */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      {/* Gradient orbs - Hidden on mobile */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl hidden md:block"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl hidden md:block"></div>
       
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-10 sm:mb-16 px-4 sm:px-0"
-        >
+        <div className="max-w-3xl mb-10 sm:mb-16 px-4 sm:px-0">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
             <span className="text-gradient">Munkamenet</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
             6 lépésben a kész weboldalig. Átlátható folyamat, fix határidők, folyamatos státusz frissítések. Professzionális projekt menedzsment.
           </p>
-        </motion.div>
+        </div>
 
         {/* Steps */}
         <div className="relative">
           <div className="space-y-8 sm:space-y-12">
             {steps.map((step, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative flex gap-6 sm:gap-8 group"
               >
                 {/* Number circle - színes */}
                 <div className="flex-shrink-0 relative">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`w-16 h-16 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30 relative z-10`}
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30 relative z-10 transition-transform duration-300 md:group-hover:scale-110 md:group-hover:rotate-6`}
                   >
                     {step.number}
-                  </motion.div>
+                  </div>
                   {/* Check icon on hover */}
                   <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                     <Check className="text-white" size={32} />
@@ -99,13 +84,10 @@ export default function Process() {
                 </div>
 
                 {/* Content */}
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  className="flex-1 pb-8 sm:pb-12"
-                >
+                <div className="flex-1 pb-8 sm:pb-12 transition-transform duration-300 md:group-hover:translate-x-2">
                   <div className="glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 relative overflow-hidden">
-                    {/* Hover gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {/* Hover gradient - Desktop only */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     <div className="relative z-10">
                       <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
@@ -116,32 +98,25 @@ export default function Process() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 sm:mt-20 text-center px-4"
-        >
+        <div className="mt-12 sm:mt-20 text-center px-4">
           <p className="text-base sm:text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
             Átlátható folyamat, fix határidők, nincs rejtett költség. Kezdjük el a projektedet.
           </p>
-          <motion.a
+          <a
             href="/ajanlat"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 text-sm sm:text-base"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 text-sm sm:text-base md:hover:scale-105 md:active:scale-95"
           >
             <span>Ingyenes Ajánlatkérés</span>
             <span>→</span>
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
       </div>
     </section>
   );
