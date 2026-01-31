@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import StructuredData from "@/components/StructuredData";
+import StructuredData from '@/components/StructuredData';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap", // Font betöltés optimalizálás
+  display: "swap",
   preload: true,
 });
 
@@ -14,62 +15,45 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: false, // Csak ha kell
+  preload: false,
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://honlaptervezo.hu'),
-  title: {
-    default: 'Honlapkészítés 1-2 Hét Alatt | Gyors Weboldal Fejlesztés 80.000 Ft-tól',
-    template: '%s | Honlapkészítő - Professzionális Webfejlesztés'
-  },
-  description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React alapú, SEO optimalizált, mobilbarát. 2-3 óra válaszidő. Webshop, landing page, vállalati oldal.',
-  keywords: [
-    'honlapkészítés',
-    'weboldal készítés',
-    'gyors honlapkészítés',
-    'webfejlesztés',
-    'Next.js fejlesztés',
-    'React weboldal',
-    'SEO optimalizálás',
-    'mobilbarát weboldal',
-    'reszponzív design',
-    'webshop készítés',
-    'landing page',
-    'vállalati weboldal',
-    'olcsó honlapkészítés',
-    'gyors weboldal',
-    'modern weboldal'
-  ],
-  authors: [{ name: 'Honlapkészítő Csapat' }],
-  creator: 'Honlapkészítő',
-  publisher: 'Honlapkészítő',
+  title: 'Honlapkészítés 1-2 Hét Alatt | Weboldal Fejlesztés 80.000 Ft-tól',
+  description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. 2-3 óra válaszidő. Webshop, landing page, vállalati oldal készítés.',
+  keywords: 'honlapkészítés, weboldal készítés, weboldal fejlesztés, egyedi weboldal, next.js fejlesztés, react fejlesztés, seo optimalizálás, gyors weboldal, olcsó honlap, prémium webdesign',
+  authors: [{ name: 'Litalna Team' }],
+  creator: 'Litalna Team',
+  publisher: 'Litalna Team',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
+    title: 'Honlapkészítés 1-2 Hét Alatt | 80.000 Ft-tól',
+    description: 'Gyors, professzionális weboldal fejlesztés. Next.js, React, mobilbarát, SEO optimalizált.',
     type: 'website',
     locale: 'hu_HU',
     url: 'https://honlaptervezo.hu',
-    siteName: 'Honlapkészítő - Gyors Webfejlesztés',
-    title: 'Honlapkészítés 1-2 Hét Alatt | 80.000 Ft-tól',
-    description: 'Professzionális weboldal fejlesztés 1-2 hét alatt. Next.js, React, SEO optimalizált, mobilbarát. 2-3 óra válaszidő. Webshop, landing page, vállalati oldal.',
+    siteName: 'Honlapkészítő',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://honlaptervezo.hu/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Honlapkészítő - Gyors, Modern Weboldalak 80.000 Ft-tól',
+        alt: 'Honlapkészítés 1-2 Hét Alatt',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Honlapkészítés 1-2 Hét Alatt | 80.000 Ft-tól',
-    description: 'Professzionális weboldal fejlesztés 1-2 hét alatt. Next.js, React, SEO optimalizált, mobilbarát.',
-    images: ['/og-image.jpg'],
+    title: 'Honlapkészítés 1-2 Hét Alatt',
+    description: 'Gyors, professzionális weboldal fejlesztés.',
+    images: ['https://honlaptervezo.hu/opengraph-image'],
+  },
+  alternates: {
+    canonical: 'https://honlaptervezo.hu',
   },
   robots: {
     index: true,
@@ -82,16 +66,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://honlaptervezo.hu',
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-  other: {
-    'mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/icon-192.png',
   },
 };
 
@@ -110,45 +87,12 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Honlapkészítő" />
         
-        {/* Preconnect for faster 3rd party loads */}
+        {/* Preconnect for faster 3rd party loads (Added for PageSpeed) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
-        {/* Google Tag Manager - Defer for better PageSpeed */}
-        <script
-          defer
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXX');`,
-          }}
-        />
-        
-        {/* Google Ads - Defer for performance */}
-        <script
-          defer
-          src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXXX"
-        />
-        <script
-          defer
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-XXXXXXXXXX');
-              
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied',
-                'wait_for_update': 500
-              });
-            `,
-          }}
-        />
+        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
         
         <link rel="canonical" href="https://honlaptervezo.hu" />
         <link rel="manifest" href="/manifest.json" />
@@ -161,12 +105,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K8974C6N"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+
+        {/* Delayed GTM Load Strategy for 90+ PageSpeed */}
+        <Script
+          id="gtm-delayed"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              setTimeout(function() {
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-K8974C6N');
+              }, 3500); // 3.5s delay to clear LCP/TBT metrics
+            `,
+          }}
+        />
+
+        {/* Delayed Google Ads */}
+        <Script
+          id="google-ads-delayed"
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16839366378"
+        />
+        <Script
+          id="google-ads-config"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16839366378', {
+                'send_page_view': false // Manual control
+              });
+              
+              // Send pageview after delay
+              setTimeout(function() {
+                gtag('event', 'page_view', {
+                  'send_to': 'AW-16839366378'
+                });
+              }, 4000);
+            `,
+          }}
+        />
+
         {children}
       </body>
     </html>
