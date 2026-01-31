@@ -10,64 +10,27 @@ export default function Hero() {
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-25"></div>
 
-      {/* Enhanced gradient orbs */}
-      <motion.div 
-        className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.35, 0.2],
-          x: [0, 30, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.35, 0.2],
-          x: [0, -30, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div 
-        className="absolute top-1/3 right-1/3 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-          y: [0, 40, 0],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* Simplified gradient orbs - static for better performance */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl opacity-30"></div>
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        {/* Badge */}
+        {/* Badge - simple fade in */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg"
         >
           <Zap className="w-4 h-4 text-blue-400" />
           <span className="text-sm font-semibold text-gray-200">Gyors, megbízható, professzionális</span>
         </motion.div>
 
-        {/* Main Heading */}
+        {/* Main Heading - simple fade */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight"
         >
           <span className="block text-white">
@@ -202,23 +165,23 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="mt-12 mb-8"
-          >
+        {/* Trust Badges - simple fade */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-12 mb-8"
+        >
             <TrustBadges />
           </motion.div>
 
-          {/* Trust Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-            className="glass border border-blue-500/15 rounded-xl p-6 text-center"
-          >
+        {/* Trust Bar - simple fade */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="glass border border-blue-500/15 rounded-xl p-6 text-center"
+        >
             <p className="text-gray-300 text-sm sm:text-base">
               <span className="text-white font-semibold">Tapasztalt fejlesztő csapatunk</span> építi a projektedet. Nincs ügynökségi árszabás, nincs hónapos várakozás. Kapsz egy ingyenes konzultációt, ahol megbeszéljük mit akarsz, aztán elkezdjük építeni.
             </p>

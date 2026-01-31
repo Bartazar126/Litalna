@@ -29,7 +29,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <ParticleBackground />
       <Header />
       <main className="overflow-x-hidden">
         <Hero />
