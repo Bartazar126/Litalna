@@ -45,7 +45,7 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold text-gradient mb-4">
-              Honlapkészítő
+              Nexuscode
             </h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               <span className="font-bold text-white">Gyors, megbízható honlapfejlesztés.</span> Professzionális fejlesztő csapatunk építi a projektedet. Minden nap elérhetőek vagyunk 8-22 óráig. 2-3 óra válaszidő garantálva.
@@ -123,14 +123,14 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-start gap-2">
                 <Mail size={18} className="mt-1 flex-shrink-0 text-cyan-400" />
-                <a href="mailto:info@honlaptervezo.hu" className="hover:text-blue-400 transition-colors">
-                  info@honlaptervezo.hu
+                <a href="mailto:hello@nexuscode.hu" className="hover:text-blue-400 transition-colors">
+                  hello@nexuscode.hu
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-cyan-400 flex-shrink-0">📞</span>
-                <a href="tel:+36301234567" className="hover:text-blue-400 transition-colors">
-                  +36 30 123 4567
+                <a href="tel:+36309932454" className="hover:text-blue-400 transition-colors">
+                  +36 30 993 2454
                 </a>
               </li>
               <li className="flex items-start gap-2">
@@ -144,7 +144,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-blue-500/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © {currentYear} Honlapkészítő. Minden jog fenntartva. | 
+            © {currentYear} Nexuscode. Minden jog fenntartva. | 
             <span className="text-xs ml-2">Professzionális weboldal fejlesztés 1-2 hét alatt</span>
           </p>
           <div className="flex gap-6 text-sm flex-wrap justify-center">
