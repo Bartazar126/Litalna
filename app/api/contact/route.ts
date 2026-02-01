@@ -21,8 +21,7 @@ export async function POST(request: Request) {
       : `Új megkeresés: ${name} - Nexuscode`;
 
     // Create transporter
-    // Using provided App Password as fallback if env var is missing
-    const emailUser = process.env.EMAIL_USER || 'hello@nexuscode.hu'; // Assuming this is the email
+    const emailUser = process.env.EMAIL_USER || 'hello@nexuscode.hu';
     const emailPass = process.env.EMAIL_PASS || 'biki pcdh aquz bsqn';
 
     const transporter = nodemailer.createTransport({
@@ -33,73 +32,32 @@ export async function POST(request: Request) {
       },
     });
 
-    // Build email content based on request type
-    let textContent = '';
-    let htmlContent = '';
+    // 1. Email to Admin (Te kapod)
+    let adminText = '';
+    let adminHtml = '';
 
     if (isQuoteRequest) {
-      // Quote Request Content
-      textContent = `
-        Új AJÁNLATKÉRÉS érkezett a Nexuscode weboldalról:
-        
-        Személyes adatok:
-        -----------------
-        Név: ${name}
-        Email: ${email}
-        Telefon: ${phone || '-'}
-        Cég: ${company || '-'}
-        Meglévő weboldal: ${website || '-'}
-        
-        Projekt részletek:
-        ------------------
-        Típus: ${projectType}
-        Költségkeret: ${budget || '-'}
-        Határidő: ${deadline || '-'}
-        Funkciók: ${features ? features.join(', ') : '-'}
-        Forrás: ${source || '-'}
-        
-        Leírás:
-        ${description}
-      `;
-
-      htmlContent = `
+      adminHtml = `
         <h3>Új AJÁNLATKÉRÉS érkezett a Nexuscode weboldalról</h3>
-        
         <h4>Személyes adatok:</h4>
         <p><strong>Név:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Telefon:</strong> ${phone || '-'}</p>
         <p><strong>Cég:</strong> ${company || '-'}</p>
         <p><strong>Weboldal:</strong> ${website || '-'}</p>
-        
         <hr/>
-        
         <h4>Projekt részletek:</h4>
         <p><strong>Típus:</strong> ${projectType}</p>
         <p><strong>Költségkeret:</strong> ${budget || '-'}</p>
         <p><strong>Határidő:</strong> ${deadline || '-'}</p>
         <p><strong>Funkciók:</strong> ${features ? features.join(', ') : '-'}</p>
         <p><strong>Forrás:</strong> ${source || '-'}</p>
-        
         <hr/>
-        
         <h4>Leírás:</h4>
         <p>${description ? description.replace(/\n/g, '<br>') : '-'}</p>
       `;
     } else {
-      // General Contact Content
-      textContent = `
-        Új megkeresés érkezett a Nexuscode weboldalról:
-        
-        Név: ${name}
-        Email: ${email}
-        Telefon: ${phone || 'Nem megadott'}
-        
-        Üzenet:
-        ${message}
-      `;
-
-      htmlContent = `
+      adminHtml = `
         <h3>Új megkeresés érkezett a Nexuscode weboldalról</h3>
         <p><strong>Név:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
@@ -110,32 +68,44 @@ export async function POST(request: Request) {
       `;
     }
 
-    // Email options
-    const mailOptions = {
-      from: emailUser, // Sender address
-      to: emailUser,   // Receive email yourself
-      replyTo: email,  // Reply to the user
-      subject: subject,
-      text: textContent,
-      html: htmlContent,
-    };
+    // 2. Email to User (Visszaigazolás)
+    const userSubject = `Köszönjük megkeresését! - Nexuscode`;
+    const userHtml = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h2 style="color: #3b82f6;">Nexuscode</h2>
+        </div>
+        <p>Kedves ${name}!</p>
+        <p>Köszönjük, hogy felvetted velünk a kapcsolatot.</p>
+        <p>Üzenetedet megkaptuk, kollégánk hamarosan (általában 2-3 órán belül) feldolgozza, és válaszol a megadott elérhetőségeken.</p>
+        <br/>
+        <p>Üdvözlettel,</p>
+        <p><strong>A Nexuscode csapata</strong></p>
+        <p><a href="https://nexuscode.hu" style="color: #3b82f6;">nexuscode.hu</a></p>
+      </div>
+    `;
 
-    // Send email
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully');
-      
-      return NextResponse.json(
-        { message: 'Sikeres küldés' },
-        { status: 200 }
-      );
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      return NextResponse.json(
-        { error: 'Email küldés sikertelen' },
-        { status: 500 }
-      );
-    }
+    // Send Admin Email
+    await transporter.sendMail({
+      from: `"Nexuscode Web" <${emailUser}>`,
+      to: emailUser,
+      replyTo: email,
+      subject: subject,
+      html: adminHtml,
+    });
+
+    // Send Confirmation Email to User
+    await transporter.sendMail({
+      from: `"Nexuscode" <${emailUser}>`,
+      to: email,
+      subject: userSubject,
+      html: userHtml,
+    });
+
+    return NextResponse.json(
+      { message: 'Sikeres küldés' },
+      { status: 200 }
+    );
 
   } catch (error) {
     console.error('Error processing request:', error);

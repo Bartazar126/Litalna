@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { Send } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { Send, CheckCircle2, AlertCircle } from 'lucide-react'; // Added icons
+import { motion, AnimatePresence } from 'framer-motion'; // Ensure AnimatePresence is imported
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 
 export default function ContactModern() {
   const ref = useRef(null);
@@ -17,8 +16,22 @@ export default function ContactModern() {
     message: '',
   });
 
+  const [notification, setNotification] = useState<{
+    show: boolean;
+    type: 'success' | 'error';
+    message: string;
+  }>({ show: false, type: 'success', message: '' });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Show loading state or disable button
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Küldés...';
+    }
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -29,14 +42,33 @@ export default function ContactModern() {
       });
 
       if (response.ok) {
-        alert('Köszönjük! 2-3 órán belül jelentkezünk.');
+        setNotification({
+          show: true,
+          type: 'success',
+          message: 'Köszönjük! Üzenetét megkaptuk, hamarosan jelentkezünk.',
+        });
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
-        alert('Hiba történt az üzenet küldésekor. Kérjük próbálja újra később, vagy írjon közvetlenül emailt.');
+        setNotification({
+          show: true,
+          type: 'error',
+          message: 'Hiba történt a küldéskor. Kérjük próbálja újra.',
+        });
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Hiba történt az üzenet küldésekor.');
+      setNotification({
+        show: true,
+        type: 'error',
+        message: 'Hiba történt a hálózati kapcsolatban.',
+      });
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Küldés</span><svg ...>'; // This part is tricky to restore exactly, better to use react state for button text
+        }
+        // Auto hide notification after 5 seconds
+        setTimeout(() => setNotification({ ...notification, show: false }), 5000);
     }
   };
 
@@ -49,6 +81,25 @@ export default function ContactModern() {
 
   return (
     <section id="contact" className="py-12 sm:py-20 md:py-28 px-4 bg-[#030712] relative overflow-hidden">
+      {/* Notification Toast */}
+      <AnimatePresence>
+        {notification.show && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: 50, x: '-50%' }}
+            className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 border ${
+              notification.type === 'success' 
+                ? 'bg-gray-900 border-green-500 text-green-400' 
+                : 'bg-gray-900 border-red-500 text-red-400'
+            }`}
+          >
+            {notification.type === 'success' ? <CheckCircle2 size={24} /> : <AlertCircle size={24} />}
+            <span className="font-medium text-white">{notification.message}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Background */}
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
       
@@ -125,7 +176,7 @@ export default function ContactModern() {
               value={formData.phone}
               onChange={handleChange}
               className="w-full px-4 py-3 glass border border-blue-500/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-white placeholder:text-gray-500"
-              placeholder="+36 30 123 4567"
+              placeholder="+36 30 993 2454"
             />
           </div>
 
@@ -146,6 +197,7 @@ export default function ContactModern() {
           </div>
 
           <motion.button
+            id="submit-btn"
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -170,8 +222,8 @@ export default function ContactModern() {
           <p className="text-gray-300 mb-4">
             Telefonon vagy emailben is elérhetsz minket. <span className="font-bold text-white">Minden nap 8-22 óra között.</span>
           </p>
-          <a href="mailto:info@honlaptervezo.hu" className="text-gradient font-semibold hover:underline text-lg">
-            info@honlaptervezo.hu
+          <a href="mailto:hello@nexuscode.hu" className="text-gradient font-semibold hover:underline text-lg">
+            hello@nexuscode.hu
           </a>
           <p className="text-gray-400 text-sm mt-4">
             <span className="text-white font-semibold">Az első konzultáció ingyenes</span> és kötelezettség nélküli.

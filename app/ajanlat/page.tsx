@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle, Zap, TrendingUp, Award } from 'lucide-react';
 
 export default function AjanlatPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -49,7 +51,8 @@ export default function AjanlatPage() {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        // Redirect to Thank You page for Google Ads tracking
+        router.push('/koszonjuk');
       } else {
         alert('Hiba történt az ajánlatkérés küldésekor. Kérjük próbálja újra később, vagy írjon emailt: hello@nexuscode.hu');
       }
