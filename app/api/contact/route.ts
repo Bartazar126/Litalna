@@ -17,8 +17,8 @@ export async function POST(request: Request) {
     // Determine subject based on input type (Contact vs Quote)
     const isQuoteRequest = !!projectType;
     const subject = isQuoteRequest 
-      ? `🚀 Új AJÁNLATKÉRÉS: ${name}`
-      : `📩 Új Üzenet: ${name}`;
+      ? `Új AJÁNLATKÉRÉS: ${name}`
+      : `Új Üzenet: ${name}`;
 
     // Create transporter
     const emailUser = process.env.EMAIL_USER;
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
         <div style="${styles.container}">
           <div style="${styles.header}">
             <h1 style="${styles.headerTitle}">NEXUSCODE</h1>
-            <p style="${styles.headerSub}">Új Ajánlatkérés Érkezett 🚀</p>
+            <p style="${styles.headerSub}">Új Ajánlatkérés Érkezett</p>
           </div>
           
           <div style="${styles.body}">
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
         <div style="${styles.container}">
           <div style="${styles.header}">
             <h1 style="${styles.headerTitle}">NEXUSCODE</h1>
-            <p style="${styles.headerSub}">Új Üzenet Érkezett 📩</p>
+            <p style="${styles.headerSub}">Új Üzenet Érkezett</p>
           </div>
           
           <div style="${styles.body}">
@@ -133,14 +133,14 @@ export async function POST(request: Request) {
     }
 
     // --- USER CONFIRMATION TEMPLATE (FRIENDLY VERSION) ---
-    const userSubject = `Köszi, hogy írtál! 👋 - Nexuscode`;
+    const userSubject = `Köszi, hogy írtál! - Nexuscode`;
     const userHtml = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
         <div style="text-align: center; padding: 30px 20px; background-color: #f8fafc; border-bottom: 1px solid #e5e7eb;">
           <h2 style="color: #2563eb; margin: 0; font-weight: 800; font-size: 24px;">Nexuscode</h2>
         </div>
         <div style="padding: 30px 25px; color: #334155; line-height: 1.6;">
-          <p style="font-size: 18px; margin-top: 0; font-weight: 600; color: #1e293b;">Szia ${name.split(' ')[0]}! 👋</p>
+          <p style="font-size: 18px; margin-top: 0; font-weight: 600; color: #1e293b;">Szia ${name.split(' ')[0]}!</p>
           
           <p>Köszi, hogy megkerestél minket!</p>
           
@@ -153,7 +153,7 @@ export async function POST(request: Request) {
           <p>Addig is legyen szép napod!</p>
           <br/>
           <p style="margin-bottom: 0;">Üdv,</p>
-          <p style="font-weight: bold; color: #0f172a; margin-top: 5px;">A Nexuscode csapata 🚀</p>
+          <p style="font-weight: bold; color: #0f172a; margin-top: 5px;">A Nexuscode csapata</p>
         </div>
         <div style="background-color: #f8fafc; padding: 15px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e5e7eb;">
           <a href="https://nexuscode.hu" style="color: #64748b; text-decoration: none;">nexuscode.hu</a>
