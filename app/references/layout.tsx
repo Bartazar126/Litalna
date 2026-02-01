@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Néhány projekt: booking rendszerek, modern weboldalak Next.js technológiával.',
   },
   alternates: {
-    canonical: 'https://honlaptervezo.hu/references',
+    canonical: 'https://nexuscode.hu/references',
   },
 };
 

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: 'Gyors, professzionális weboldal fejlesztés. Next.js, React, mobilbarát, SEO optimalizált.',
   },
   alternates: {
-    canonical: 'https://honlaptervezo.hu',
+    canonical: 'https://nexuscode.hu',
   },
 };
 

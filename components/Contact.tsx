@@ -54,8 +54,8 @@ export default function Contact() {
                     <div className="font-semibold text-gray-900 dark:text-white mb-1">
                       Email
                     </div>
-                    <a href="mailto:info@honlaptervezo.hu" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                      info@honlaptervezo.hu
+                    <a href="mailto:hello@nexuscode.hu" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      hello@nexuscode.hu
                     </a>
                   </div>
                 </div>

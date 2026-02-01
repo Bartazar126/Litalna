@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Kérj ingyenes árajánlatot. 2-3 óra válaszidő, átlátható árazás, gyors átfutás.',
   },
   alternates: {
-    canonical: 'https://honlaptervezo.hu/ajanlat',
+    canonical: 'https://nexuscode.hu/ajanlat',
   },
 };
 

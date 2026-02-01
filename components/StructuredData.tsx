@@ -3,8 +3,8 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Honlapkészítő',
-    url: 'https://honlaptervezo.hu',
-    logo: 'https://honlaptervezo.hu/logo.png',
+    url: 'https://nexuscode.hu',
+    logo: 'https://nexuscode.hu/logo.png',
     description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React alapú, SEO optimalizált, mobilbarát weboldalak.',
     address: {
       '@type': 'PostalAddress',
@@ -17,7 +17,7 @@ export default function StructuredData() {
       '@type': 'ContactPoint',
       telephone: '+36-30-123-4567',
       contactType: 'customer service',
-      email: 'info@honlaptervezo.hu',
+      email: 'hello@nexuscode.hu',
       availableLanguage: ['Hungarian'],
       hoursAvailable: {
         '@type': 'OpeningHoursSpecification',

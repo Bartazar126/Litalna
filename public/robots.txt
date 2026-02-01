@@ -4,4 +4,4 @@ Allow: /
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://honlaptervezo.hu/sitemap.xml
+Sitemap: https://nexuscode.hu/sitemap.xml

@@ -94,7 +94,7 @@ export default function RootLayout({
         
         <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
         
-        <link rel="canonical" href="https://honlaptervezo.hu" />
+        <link rel="canonical" href="https://nexuscode.hu" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <StructuredData />
