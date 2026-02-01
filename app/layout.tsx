@@ -102,57 +102,35 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K8974C6N"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        {/* Google Analytics (noscript) - Optional, but good practice if you had GTM before */}
+        {/* Removed GTM noscript as we switched to direct GA4 implementation */}
 
-        {/* Delayed GTM Load Strategy for 90+ PageSpeed */}
+        {/* Delayed Google Analytics (GA4) */}
         <Script
-          id="gtm-delayed"
+          id="ga4-delayed"
           strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              setTimeout(function() {
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-K8974C6N');
-              }, 3500); // 3.5s delay to clear LCP/TBT metrics
-            `,
-          }}
-        />
-
-        {/* Delayed Google Ads */}
-        <Script
-          id="google-ads-delayed"
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16839366378"
+          src="https://www.googletagmanager.com/gtag/js?id=G-DK6GNH27QV"
         />
         <Script
-          id="google-ads-config"
+          id="ga4-config"
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-16839366378', {
-                'send_page_view': false // Manual control
-              });
               
-              // Send pageview after delay
+              // Initial config without pageview to prevent double counting if manual trigger is used
+              gtag('config', 'G-DK6GNH27QV', {
+                'send_page_view': false 
+              });
+
+              // Delayed pageview for PageSpeed
               setTimeout(function() {
                 gtag('event', 'page_view', {
-                  'send_to': 'AW-16839366378'
+                  'send_to': 'G-DK6GNH27QV'
                 });
-              }, 4000);
+              }, 3500); // 3.5s delay
             `,
           }}
         />
