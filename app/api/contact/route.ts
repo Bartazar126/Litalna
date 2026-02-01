@@ -21,8 +21,15 @@ export async function POST(request: Request) {
       : `📩 Új Üzenet: ${name}`;
 
     // Create transporter
-    const emailUser = process.env.EMAIL_USER || 'hello@nexuscode.hu';
-    const emailPass = process.env.EMAIL_PASS || 'biki pcdh aquz bsqn';
+    const emailUser = process.env.EMAIL_USER;
+    const emailPass = process.env.EMAIL_PASS;
+
+    if (!emailUser || !emailPass) {
+      return NextResponse.json(
+        { error: 'Email beállítás hiányzik (EMAIL_USER/EMAIL_PASS)' },
+        { status: 500 }
+      );
+    }
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

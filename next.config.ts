@@ -18,7 +18,11 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
+  productionBrowserSourceMaps: false,
   reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   
   // Experimental features for better performance
   experimental: {
