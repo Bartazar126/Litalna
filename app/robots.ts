@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/_next/'],
+      disallow: ['/api/', '/_next/', '/koszonjuk'], // Köszönőoldalt se indexelje
     },
-    sitemap: 'https://honlaptervezo.hu/sitemap.xml',
+    sitemap: 'https://nexuscode.hu/sitemap.xml',
   };
 }
