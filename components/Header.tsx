@@ -20,6 +20,7 @@ export default function Header() {
     { name: 'Kezdőlap', href: '/' },
     { name: 'Szolgáltatások', href: '/#services' },
     { name: 'Referenciák', href: '/references' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Kapcsolat', href: '/#contact' },
   ];
 

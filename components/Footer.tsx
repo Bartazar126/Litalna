@@ -18,6 +18,7 @@ export default function Footer() {
     { name: 'Kezdőlap', href: '/' },
     { name: 'Szolgáltatások', href: '/#services' },
     { name: 'Referenciák', href: '/references' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Ajánlatkérés', href: '/ajanlat' },
     { name: 'Kapcsolat', href: '/#contact' },
   ];
