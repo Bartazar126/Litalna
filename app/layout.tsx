@@ -19,41 +19,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Honlapkészítés 1-2 Hét Alatt | Weboldal Fejlesztés 80.000 Ft-tól',
+  title: 'Nexuscode | Modern Weboldal Fejlesztés 80.000 Ft-tól',
   description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. 2-3 óra válaszidő. Webshop, landing page, vállalati oldal készítés.',
-  keywords: 'honlapkészítés, weboldal készítés, weboldal fejlesztés, egyedi weboldal, next.js fejlesztés, react fejlesztés, seo optimalizálás, gyors weboldal, olcsó honlap, prémium webdesign',
-  authors: [{ name: 'Litalna Team' }],
-  creator: 'Litalna Team',
-  publisher: 'Litalna Team',
+  keywords: 'honlapkészítés, weboldal készítés, weboldal fejlesztés, egyedi weboldal, next.js fejlesztés, react fejlesztés, seo optimalizálás, gyors weboldal, olcsó honlap, prémium webdesign, nexuscode',
+  authors: [{ name: 'Nexuscode Team' }],
+  creator: 'Nexuscode',
+  publisher: 'Nexuscode',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'Honlapkészítés 1-2 Hét Alatt | 80.000 Ft-tól',
+    title: 'Nexuscode | Modern Weboldal Fejlesztés',
     description: 'Gyors, professzionális weboldal fejlesztés. Next.js, React, mobilbarát, SEO optimalizált.',
     type: 'website',
     locale: 'hu_HU',
-    url: 'https://honlaptervezo.hu',
-    siteName: 'Honlapkészítő',
+    url: 'https://nexuscode.hu',
+    siteName: 'Nexuscode',
     images: [
       {
-        url: 'https://honlaptervezo.hu/opengraph-image',
+        url: 'https://nexuscode.hu/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Honlapkészítés 1-2 Hét Alatt',
+        alt: 'Nexuscode - Weboldal Fejlesztés',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Honlapkészítés 1-2 Hét Alatt',
+    title: 'Nexuscode | Modern Weboldal Fejlesztés',
     description: 'Gyors, professzionális weboldal fejlesztés.',
-    images: ['https://honlaptervezo.hu/opengraph-image'],
+    images: ['https://nexuscode.hu/opengraph-image'],
   },
   alternates: {
-    canonical: 'https://honlaptervezo.hu',
+    canonical: 'https://nexuscode.hu',
   },
   robots: {
     index: true,
@@ -85,7 +85,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Honlapkészítő" />
+        <meta name="apple-mobile-web-app-title" content="Nexuscode" />
         
         {/* Preconnect for faster 3rd party loads (Added for PageSpeed) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />

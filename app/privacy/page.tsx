@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Adatvédelmi Nyilatkozat | Honlapkészítő',
+  title: 'Adatvédelmi Nyilatkozat | Nexuscode',
   description: 'Adatvédelmi szabályzat és cookie-k használata. GDPR kompatibilis adatkezelés.',
   robots: {
     index: true,
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Általános információk</h2>
             <p>
-              A Honlapkészítő (a továbbiakban: "mi", "miénk", "minket") elkötelezett a személyes adatok védelme iránt. 
+              A Nexuscode (üzemeltető: Nagy Norbert E.V., a továbbiakban: "mi", "miénk", "minket") elkötelezett a személyes adatok védelme iránt. 
               Ez az adatvédelmi nyilatkozat ismerteti, hogyan gyűjtjük, használjuk és védjük az Ön személyes adatait, 
               amikor weboldalunkat használja.
             </p>
@@ -42,10 +42,12 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">2. Adatkezelő adatai</h2>
             <div className="glass border border-blue-500/20 rounded-xl p-6">
-              <p><strong>Név:</strong> Honlapkészítő</p>
-              <p><strong>Székhely:</strong> 1051 Budapest, Példa utca 12.</p>
-              <p><strong>E-mail:</strong> info@honlaptervezo.hu</p>
-              <p><strong>Telefon:</strong> +36 30 123 4567</p>
+              <p><strong>Név:</strong> Nagy Norbert E.V.</p>
+              <p><strong>Adószám:</strong> 57631336-1-36</p>
+              <p><strong>Székhely:</strong> 5300 Karcag, Kisújszállási út 44/D</p>
+              <p><strong>E-mail:</strong> hello@nexuscode.hu</p>
+              <p><strong>Telefon:</strong> +36 30 993 2454</p>
+              <p><strong>Weboldal:</strong> nexuscode.hu</p>
             </div>
           </section>
 
@@ -123,7 +125,7 @@ export default function PrivacyPage() {
               <li><strong>Tiltakozás:</strong> Tiltakozhat bizonyos adatkezelések ellen</li>
             </ul>
             <p className="mt-4 text-blue-400">
-              Jogai gyakorlásához írjon nekünk: <a href="mailto:info@honlaptervezo.hu" className="hover:underline">info@honlaptervezo.hu</a>
+              Jogai gyakorlásához írjon nekünk: <a href="mailto:hello@nexuscode.hu" className="hover:underline">hello@nexuscode.hu</a>
             </p>
           </section>
 
@@ -155,8 +157,8 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-white mb-4">12. Kapcsolat</h2>
             <div className="glass border border-blue-500/20 rounded-xl p-6">
               <p className="mb-2">Ha kérdése van adatvédelmi gyakorlatunkkal kapcsolatban:</p>
-              <p><strong>Email:</strong> <a href="mailto:info@honlaptervezo.hu" className="text-blue-400 hover:underline">info@honlaptervezo.hu</a></p>
-              <p><strong>Telefon:</strong> +36 30 123 4567</p>
+              <p><strong>Email:</strong> <a href="mailto:hello@nexuscode.hu" className="text-blue-400 hover:underline">hello@nexuscode.hu</a></p>
+              <p><strong>Telefon:</strong> +36 30 993 2454</p>
               <p><strong>Elérhetőség:</strong> Minden nap 8-22 óra között</p>
             </div>
           </section>

@@ -17,11 +17,27 @@ export default function ContactModern() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Köszönjük! 2-3 órán belül jelentkezünk.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Köszönjük! 2-3 órán belül jelentkezünk.');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        alert('Hiba történt az üzenet küldésekor. Kérjük próbálja újra később, vagy írjon közvetlenül emailt.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hiba történt az üzenet küldésekor.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

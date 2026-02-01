@@ -135,7 +135,7 @@ export default function PricingSimple() {
               whileHover={{ y: -8, scale: plan.popular ? 1.03 : 1.02 }}
               className={`relative glass border-2 ${getColorClasses(plan.color, 'border')} ${
                 plan.popular ? 'lg:scale-105 lg:shadow-2xl' : ''
-              } p-6 sm:p-8 rounded-2xl transition-all duration-300 ${getColorClasses(plan.color, 'shadow')}`}
+              } p-6 sm:p-8 rounded-2xl transition-all duration-300 ${getColorClasses(plan.color, 'shadow')} flex flex-col`}
             >
               {/* Popular Badge */}
               {plan.popular && (
@@ -174,7 +174,7 @@ export default function PricingSimple() {
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <Check className={`w-5 h-5 ${getColorClasses(plan.color, 'text')} flex-shrink-0 mt-0.5`} />
@@ -184,14 +184,16 @@ export default function PricingSimple() {
               </ul>
 
               {/* CTA Button */}
-              <motion.a
-                href="/ajanlat"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`block w-full bg-gradient-to-r ${getColorClasses(plan.color, 'gradient')} text-white px-6 py-3 rounded-xl font-semibold text-center transition-all duration-300 shadow-lg hover:shadow-xl ${getColorClasses(plan.color, 'shadow')}`}
-              >
-                {plan.cta}
-              </motion.a>
+              <div className="mt-auto">
+                <motion.a
+                  href="/ajanlat"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`block w-full bg-gradient-to-r ${getColorClasses(plan.color, 'gradient')} text-white px-6 py-3 rounded-xl font-semibold text-center transition-all duration-300 shadow-lg hover:shadow-xl ${getColorClasses(plan.color, 'shadow')}`}
+                >
+                  {plan.cta}
+                </motion.a>
+              </div>
             </motion.div>
           ))}
         </div>
