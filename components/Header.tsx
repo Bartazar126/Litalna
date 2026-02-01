@@ -38,10 +38,10 @@ export default function Header() {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <a 
-            href="#hero" 
-            className="text-xl md:text-2xl font-bold text-white"
+            href="/" 
+            className="text-xl md:text-2xl font-bold text-white tracking-tight"
           >
-            <span className="text-gradient">Honlap</span>készítő
+            <span className="text-gradient">Nexus</span>code
           </a>
 
           {/* Desktop Navigation */}
