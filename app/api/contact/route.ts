@@ -65,7 +65,7 @@ export async function POST(request: Request) {
             <div style="${styles.row}"><span style="${styles.label}">Email:</span> <a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></div>
             <div style="${styles.row}"><span style="${styles.label}">Telefon:</span> <span style="${styles.value}">${phone || '-'}</span></div>
             <div style="${styles.row}"><span style="${styles.label}">Cég:</span> <span style="${styles.value}">${company || '-'}</span></div>
-            <div style="${styles.row}"><span style="${styles.label}">Weboldal:</span> <a href="${website}" style="color: #2563eb;">${website || '-'}</a></div>
+            <div style="${styles.row}"><span style="${styles.label}">Weboldal:</span> <span style="${styles.value}">${website || '-'}</span></div>
 
             <br/>
 
@@ -125,25 +125,31 @@ export async function POST(request: Request) {
       `;
     }
 
-    // --- USER CONFIRMATION TEMPLATE (Marad a régi, egyszerű, de szép) ---
-    const userSubject = `Köszönjük megkeresését! - Nexuscode`;
+    // --- USER CONFIRMATION TEMPLATE (FRIENDLY VERSION) ---
+    const userSubject = `Köszi, hogy írtál! 👋 - Nexuscode`;
     const userHtml = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
         <div style="text-align: center; padding: 30px 20px; background-color: #f8fafc; border-bottom: 1px solid #e5e7eb;">
           <h2 style="color: #2563eb; margin: 0; font-weight: 800; font-size: 24px;">Nexuscode</h2>
         </div>
         <div style="padding: 30px 25px; color: #334155; line-height: 1.6;">
-          <p style="font-size: 16px; margin-top: 0;">Kedves <strong>${name}</strong>!</p>
-          <p>Köszönjük, hogy felvetted velünk a kapcsolatot.</p>
-          <p>Üzenetedet sikeresen megkaptuk. Kollégánk hamarosan (általában 2-3 órán belül) feldolgozza, és válaszol a megadott elérhetőségeken.</p>
-          <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0; border-radius: 4px; font-size: 14px; color: #1e40af;">
-            Addig is, ha sürgős kérdésed van, hívj minket bátran: <strong>+36 30 993 2454</strong>
+          <p style="font-size: 18px; margin-top: 0; font-weight: 600; color: #1e293b;">Szia ${name.split(' ')[0]}! 👋</p>
+          
+          <p>Köszi, hogy megkerestél minket!</p>
+          
+          <p>Megkaptuk az üzenetedet, és nagyon örülünk neki. Kollégánk hamarosan (általában 2-3 órán belül) ránéz, és keresni fogunk a megadott elérhetőségeken.</p>
+          
+          <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 25px 0; border-radius: 4px; font-size: 14px; color: #1e40af;">
+            Ha esetleg nagyon sürgős a dolog, csörögj ránk nyugodtan: <strong>+36 30 993 2454</strong>
           </div>
-          <p>Üdvözlettel,</p>
-          <p style="font-weight: bold; color: #0f172a;">A Nexuscode csapata</p>
+          
+          <p>Addig is legyen szép napod!</p>
+          <br/>
+          <p style="margin-bottom: 0;">Üdv,</p>
+          <p style="font-weight: bold; color: #0f172a; margin-top: 5px;">A Nexuscode csapata 🚀</p>
         </div>
         <div style="background-color: #f8fafc; padding: 15px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e5e7eb;">
-          <a href="https://nexuscode.hu" style="color: #64748b; text-decoration: none;">nexuscode.hu</a> | Weboldal fejlesztés profiknak
+          <a href="https://nexuscode.hu" style="color: #64748b; text-decoration: none;">nexuscode.hu</a>
         </div>
       </div>
     `;

@@ -16,6 +16,13 @@ const projects = [
     tags: ['React', 'Payment Gateway', 'Real-time'],
     color: 'from-purple-500 to-purple-600',
   },
+  {
+    title: 'Erika Nyaraló',
+    url: 'https://erikanyaralo.hu',
+    description: 'Modern szállásfoglaló weboldal. Galéria, térkép integráció, azonnali kapcsolatfelvétel, SEO optimalizált.',
+    tags: ['Webdesign', 'Szállás', 'SEO'],
+    color: 'from-green-500 to-emerald-600',
+  },
 ];
 
 export default function ReferencesPage() {

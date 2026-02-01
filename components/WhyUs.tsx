@@ -1,14 +1,8 @@
 'use client';
 
-import { CheckCircle2, Zap, Shield, Code2, TrendingUp, ArrowRight, Clock, Smartphone } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { CheckCircle2, Zap, Shield, Code2, TrendingUp, Clock, Smartphone } from 'lucide-react';
 
 export default function WhyUs() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const benefits = [
     {
       icon: Zap,
@@ -65,68 +59,54 @@ export default function WhyUs() {
 
   return (
     <section className="py-20 sm:py-32 px-4 bg-[#030712] relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30"></div>
+      {/* Background pattern - Hidden on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-30 hidden md:block"></div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
+      {/* Gradient orbs - Hidden on mobile */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl hidden md:block"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl hidden md:block"></div>
 
-      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5 }}
+          <div
             className="inline-flex items-center gap-2 glass neon-border px-5 py-2.5 rounded-full text-sm font-bold mb-6"
           >
             <CheckCircle2 size={16} className="text-cyan-400" />
             <span className="text-gradient">Miért válassz minket?</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <h2
             className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6"
           >
             Gyors válaszidő, <span className="text-gradient">profi munka</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <p
             className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
             2-3 óra válaszidő minden megkeresésre. 24-48 óra projekt indítás. Modern Next.js/React/TypeScript stack.
             <span className="font-bold text-gradient"> Gyors átfutás, professzionális kivitelezés.</span>
-          </motion.p>
+          </p>
         </div>
 
         {/* Benefits Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-20">
           {benefits.map((benefit, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -10 }}
-              className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 overflow-hidden"
+              className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 overflow-hidden md:hover:scale-[1.02]"
             >
-              {/* Gradient border glow on hover */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`}></div>
+              {/* Gradient border glow on hover - Desktop only */}
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${benefit.color} opacity-0 md:group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`}></div>
 
               {/* Icon + Stat */}
               <div className="flex items-center justify-between mb-4 relative z-10">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 6 }}
-                  className={`w-14 h-14 bg-gradient-to-br ${benefit.color} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30`}
+                <div
+                  className={`w-14 h-14 bg-gradient-to-br ${benefit.color} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 transition-transform duration-300 md:group-hover:scale-110 md:group-hover:rotate-6`}
                 >
                   <benefit.icon size={28} className="text-white" />
-                </motion.div>
+                </div>
                 <div className={`text-2xl font-black bg-gradient-to-br ${benefit.color} bg-clip-text text-transparent`}>
                   {benefit.stat}
                 </div>
@@ -141,15 +121,12 @@ export default function WhyUs() {
                   {benefit.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Tech Stack */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
+        <div
           className="glass border-2 border-blue-500/20 rounded-3xl p-8 sm:p-12"
         >
           <div className="text-center mb-8 sm:mb-12">
@@ -163,13 +140,9 @@ export default function WhyUs() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
             {techStack.map((tech, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 1.2 + index * 0.05 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-4 sm:p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 overflow-hidden"
+                className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-4 sm:p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 overflow-hidden md:hover:scale-110 md:hover:-translate-y-1"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${tech.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
 
@@ -182,18 +155,13 @@ export default function WhyUs() {
                     {tech.desc}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* References Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1.5 }}
-          className="mt-20"
-        >
+        <div className="mt-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Élő <span className="text-gradient">projektek</span>
@@ -203,14 +171,10 @@ export default function WhyUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Access to Italy */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.7 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20"
+            <div
+              className="group relative glass border-2 border-blue-500/20 hover:border-blue-400/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 md:hover:scale-[1.02] md:hover:-translate-y-1"
             >
               <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
 
@@ -222,60 +186,20 @@ export default function WhyUs() {
                   </a>
                 </div>
                 <p className="text-sm text-gray-400 mb-3">
-                  Teljes körű utazási platform Olaszországba. Modern booking rendszer, multilang support, integrált fizetés.
+                  Teljes körű utazási platform Olaszországba. Modern booking rendszer, multilang support.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 glass border border-blue-500/30 text-blue-300 rounded text-xs font-medium">Next.js</span>
                   <span className="px-2 py-1 glass border border-blue-500/30 text-blue-300 rounded text-xs font-medium">Booking</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Entrigo Tickets */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.8 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative glass border-2 border-purple-500/20 hover:border-purple-400/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20"
+            <div
+              className="group relative glass border-2 border-purple-500/20 hover:border-purple-400/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 md:hover:scale-[1.02] md:hover:-translate-y-1"
             >
               <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-purple-500 to-purple-600 rounded-l-2xl"></div>
-
-              {/* Preview on hover - Mac style */}
-              <div className="absolute -top-2 left-full ml-6 w-[500px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pointer-events-none hidden lg:block">
-                <div className="relative">
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-purple-600/20 blur-2xl"></div>
-
-                  {/* Browser window */}
-                  <div className="relative bg-white dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-zinc-800">
-                    {/* Browser chrome */}
-                    <div className="bg-gradient-to-b from-gray-100 to-gray-50 dark:from-zinc-800 dark:to-zinc-900 px-4 py-3 flex items-center gap-3 border-b border-gray-200 dark:border-zinc-700">
-                      {/* Traffic lights */}
-                      <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500 shadow-sm"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500 shadow-sm"></div>
-                      </div>
-
-                      {/* URL bar */}
-                      <div className="flex-1 bg-white dark:bg-zinc-800 rounded-md px-3 py-1 text-xs text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-zinc-700">
-                        <span className="text-green-600 dark:text-green-400">🔒</span> entrigotickets.com
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative overflow-hidden">
-                      <img
-                        src="https://res.cloudinary.com/dldgqjxkn/image/upload/v1769600863/619387b9-e0ad-4a5c-98e2-4e95e6b1415d.png"
-                        alt="Entrigo Tickets Preview"
-                        className="w-full h-auto"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               <div className="ml-4">
                 <div className="flex items-start justify-between mb-3">
@@ -285,35 +209,53 @@ export default function WhyUs() {
                   </a>
                 </div>
                 <p className="text-sm text-gray-400 mb-3">
-                  Jegy értékesítési platform. Real-time foglalás, payment gateway integráció, admin dashboard.
+                  Jegy értékesítési platform. Real-time foglalás, payment gateway integráció.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 glass border border-purple-500/30 text-purple-300 rounded text-xs font-medium">React</span>
-                  <span className="px-2 py-1 glass border border-purple-500/30 text-purple-300 rounded text-xs font-medium">Real-time</span>
+                  <span className="px-2 py-1 glass border border-purple-500/30 text-purple-300 rounded text-xs font-medium">Payment</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Erika Nyaraló */}
+            <div
+              className="group relative glass border-2 border-green-500/20 hover:border-green-400/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/20 md:hover:scale-[1.02] md:hover:-translate-y-1"
+            >
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-green-500 to-emerald-600 rounded-l-2xl"></div>
+
+              <div className="ml-4">
+                <div className="flex items-start justify-between mb-3">
+                  <h4 className="text-xl font-bold text-white">Erika Nyaraló</h4>
+                  <a href="https://erikanyaralo.hu" target="_blank" rel="noopener noreferrer" className="text-gradient hover:underline text-sm text-green-400">
+                    Megtekintés →
+                  </a>
+                </div>
+                <p className="text-sm text-gray-400 mb-3">
+                  Modern szállásfoglaló weboldal. Galéria, térkép integráció, SEO optimalizált design.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 glass border border-green-500/30 text-green-300 rounded text-xs font-medium">Webdesign</span>
+                  <span className="px-2 py-1 glass border border-green-500/30 text-green-300 rounded text-xs font-medium">SEO</span>
+                </div>
+              </div>
+            </div>
 
           </div>
-        </motion.div>
+        </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 2.1 }}
+        <div
           className="text-center mt-16"
         >
-          <motion.a
+          <a
             href="/ajanlat"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold transition-all duration-300 shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/50"
+            className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold transition-all duration-300 shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/50 md:hover:scale-105"
           >
             <span>Ingyenes Ajánlatkérés</span>
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
-          </motion.a>
-        </motion.div>
+            <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );

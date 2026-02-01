@@ -224,12 +224,12 @@ export default function AjanlatPage() {
                   Van már weboldalad?
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   name="website"
                   value={formData.website}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border-2 border-gray-200 dark:border-zinc-700 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-colors text-gray-900 dark:text-white"
-                  placeholder="https://example.com"
+                  placeholder="pl. example.com"
                 />
               </div>
               <div>
