@@ -41,7 +41,7 @@ export default function ContactModern() {
         setNotification({
           show: true,
           type: 'success',
-          message: 'Köszönjük! Üzenetét megkaptuk, hamarosan jelentkezünk.',
+          message: 'Köszönjük! Kérdésed megkaptuk, pár órán belül válaszolunk.',
         });
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
@@ -109,11 +109,11 @@ export default function ContactModern() {
           className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
-            Kérj <span className="text-gradient">ajánlatot</span>
+            Van <span className="text-gradient">kérdésed</span>? Dobd ide.
           </h2>
           <div className="section-accent-line mx-auto mb-4"></div>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
-            Töltsd ki az űrlapot vagy hívj minket. <span className="font-bold text-white">2-3 órán belül válaszolunk.</span> Minden nap elérhetőek vagyunk 8-22 óra között.
+            Itt <span className="font-bold text-white">csak kérdésekre</span> válaszolunk – ár, technika, határidő, bármi. Nincs hülye kérdés, írd le nyugodtan, pár órán belül megválaszoljuk.
           </p>
         </motion.div>
 
@@ -176,7 +176,7 @@ export default function ContactModern() {
 
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-              Üzenet
+              Kérdésed
             </label>
             <textarea
               id="message"
@@ -186,7 +186,7 @@ export default function ContactModern() {
               value={formData.message}
               onChange={handleChange}
               className="w-full px-4 py-3 glass border border-blue-500/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none text-white placeholder:text-gray-500"
-              placeholder="Meséld el, milyen weboldalt szeretnél..."
+              placeholder="Írd le a kérdésedet – árak, lehetőségek, bármi..."
             />
           </div>
 
@@ -213,7 +213,7 @@ export default function ContactModern() {
           </button>
 
           <p className="text-center text-sm text-gray-400">
-            <span className="font-bold text-white">Garantált válaszidő:</span> 2-3 órán belül jelentkezünk minden megkeresésre.
+            <span className="font-bold text-white">Gyors válasz:</span> Kérdésedre pár órán belül válaszolunk.
           </p>
         </motion.form>
 
@@ -225,13 +225,13 @@ export default function ContactModern() {
           className="mt-12 text-center"
         >
           <p className="text-gray-300 mb-4">
-            Telefonon vagy emailben is elérhetsz minket. <span className="font-bold text-white">Minden nap 8-22 óra között.</span>
+            Kérdésed van? Telefonon vagy emailben is dobhatod. <span className="font-bold text-white">8–22 óráig minden nap.</span>
           </p>
           <a href="mailto:hello@nexuscode.hu" className="text-gradient font-semibold hover:underline text-lg">
             hello@nexuscode.hu
           </a>
           <p className="text-gray-400 text-sm mt-4">
-            <span className="text-white font-semibold">Az első konzultáció ingyenes</span> és kötelezettség nélküli.
+            <span className="text-white font-semibold">Ajánlatkéréshez</span> használd az „Ingyenes ajánlatkérés” gombot a tetején.
           </p>
         </motion.div>
       </div>
