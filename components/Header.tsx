@@ -22,6 +22,7 @@ export default function Header() {
   const navItems = [
     { name: 'Kezdőlap', href: '/' },
     { name: 'Szolgáltatások', href: '/#services' },
+    { name: 'Áraink', href: '/#pricing' },
     { name: 'Blog', href: '/blog' },
     { name: 'Kapcsolat', href: '/#contact' },
   ];

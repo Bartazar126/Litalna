@@ -100,7 +100,7 @@ export default function PricingSimple() {
   };
 
   return (
-    <section id="pricing" className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f] relative overflow-hidden">
+    <section id="pricing" className="scroll-mt-24 py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f] relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-30"></div>
       {/* Gradient orbs */}

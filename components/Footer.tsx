@@ -12,6 +12,7 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Kezdőlap', href: '/' },
     { name: 'Szolgáltatások', href: '/#services' },
+    { name: 'Áraink', href: '/#pricing' },
     { name: 'Blog', href: '/blog' },
     { name: 'Ajánlatkérés', href: '/ajanlat' },
     { name: 'Kapcsolat', href: '/#contact' },

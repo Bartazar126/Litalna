@@ -51,7 +51,13 @@ export default function AjanlatPage() {
       });
 
       if (response.ok) {
-        // Redirect to Thank You page for Google Ads tracking
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'quote_request_submit', {
+            send_to: 'G-DK6GNH27QV',
+            event_category: 'conversion',
+            event_label: 'Ajánlatkérés',
+          });
+        }
         router.push('/koszonjuk');
       } else {
         alert('Hiba történt az ajánlatkérés küldésekor. Kérjük próbálja újra később, vagy írjon emailt: hello@nexuscode.hu');
