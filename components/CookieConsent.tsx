@@ -43,7 +43,7 @@ export default function CookieConsent() {
           transition={{ duration: 0.3 }}
           className="fixed bottom-0 left-0 right-0 z-[9999] p-4 sm:p-6"
         >
-          <div className="max-w-6xl mx-auto glass border-2 border-blue-500/30 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl bg-[#0f1529]/95">
+          <div className="max-w-6xl mx-auto glass border-2 border-blue-500/30 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl bg-[#0a0a0f]/95">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               {/* Icon */}
               <div className="flex-shrink-0">

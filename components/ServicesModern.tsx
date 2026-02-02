@@ -43,7 +43,7 @@ const services = [
 
 export default function ServicesModern() {
   return (
-    <section id="services" className="scroll-mt-24 py-12 sm:py-20 md:py-28 px-4 bg-[#030712] relative overflow-hidden">
+    <section id="services" className="scroll-mt-24 py-12 sm:py-20 md:py-28 px-4 bg-[#0a0a0f] relative overflow-hidden">
       {/* Background - subtle on mobile */}
       <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
       {/* Gradient orbs */}

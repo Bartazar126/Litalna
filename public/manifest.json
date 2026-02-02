@@ -4,8 +4,8 @@
   "description": "Weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, mobilbarát, SEO optimalizált.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080b14",
-  "theme_color": "#080b14",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
   "orientation": "portrait-primary",
   "icons": [
     {

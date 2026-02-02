@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Gyors, SEO-optimalizált és modern weboldalakat készítünk vállalatoknak',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#2563eb',
+    background_color: '#0a0a0f',
+    theme_color: '#0a0a0f',
     icons: [
       {
         src: '/icon-192.png',

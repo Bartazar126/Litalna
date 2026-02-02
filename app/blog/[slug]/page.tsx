@@ -42,10 +42,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   return (
-    <div className="min-h-screen bg-[#080b14] text-white">
+    <div className="min-h-screen bg-[#0a0a0f] text-white">
       {/* Progress bar logic could be added here */}
       
-      <header className="border-b border-white/10 bg-[#080b14]/95 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-white/10 bg-[#0a0a0f]/95 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/blog" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors font-medium">
             <ArrowLeft size={16} />

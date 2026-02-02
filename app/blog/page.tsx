@@ -12,9 +12,9 @@ export default function BlogIndex() {
   const posts = getAllPosts();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080b14] via-[#0f1529] to-[#080b14] text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f] text-white">
       {/* Header */}
-      <header className="border-b border-white/10 bg-[#080b14]/80 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold">
             <span className="text-gradient">Nexus</span>code

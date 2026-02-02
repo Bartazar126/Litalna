@@ -81,7 +81,8 @@ export default function RootLayout({
     <html lang="hu" className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="theme-color" content="#080b14" />
+        <meta name="theme-color" content="#0a0a0f" />
+        <meta name="msapplication-TileColor" content="#0a0a0f" />
         <meta name="color-scheme" content="dark" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

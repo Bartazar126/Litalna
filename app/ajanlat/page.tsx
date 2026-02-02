@@ -66,7 +66,7 @@ export default function AjanlatPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-[#030712] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
         <div className="max-w-2xl w-full text-center">
           <div className="bg-[#0f172a] border-2 border-green-500/50 rounded-3xl p-12 shadow-2xl">
             <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -112,9 +112,9 @@ export default function AjanlatPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0f]">
       {/* Header */}
-      <header className="border-b border-white/10 bg-[#030712]/95 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-white/10 bg-[#0a0a0f]/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold text-white hover:text-blue-400 transition-colors">
             <ArrowLeft size={20} />

@@ -24,7 +24,7 @@ export default function TestimonialsModern() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#030712] via-[#0a0a1f] to-[#030712] relative overflow-hidden">
+    <section className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f] relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
       {/* Gradient orbs */}

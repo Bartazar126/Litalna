@@ -25,7 +25,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#030712] text-white relative overflow-hidden border-t border-blue-500/20">
+    <footer className="bg-[#0a0a0f] text-white relative overflow-hidden border-t border-blue-500/20">
       {/* Background elements */}
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
@@ -41,7 +41,7 @@ export default function Footer() {
           >
             <a
               href="/"
-              className="inline-flex items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
+              className="inline-flex items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
             >
               <span className="relative block h-8 w-11 shrink-0">
                 <Image

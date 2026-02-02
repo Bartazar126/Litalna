@@ -5,7 +5,7 @@ import TrustBadges from './TrustBadges';
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#080b14] via-[#0f1529] to-[#080b14]">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f]">
       {/* Grid pattern - subtle on mobile, stronger on desktop */}
       <div className="absolute inset-0 grid-pattern opacity-[0.12] md:opacity-30"></div>
 
@@ -18,26 +18,26 @@ export default function Hero() {
         {/* Badge - Static on mobile, animate on desktop */}
         <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg shadow-blue-500/10 md:animate-fade-in">
           <Zap className="w-4 h-4 text-blue-400" />
-          <span className="text-sm font-semibold text-gray-200">Gyors, megbízható, professzionális</span>
+          <span className="text-sm font-semibold text-gray-200">Professzionális weboldal fejlesztés</span>
         </div>
 
         {/* Main Heading - Static on mobile, animate on desktop */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight md:animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <span className="block text-white">
-            A weboldalad
+            Professzionális weboldal
           </span>
           <span className="block mt-2 sm:mt-4 text-gradient text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-            1-2 hét alatt kész
+            gyors átfutással, fix határidővel
           </span>
         </h1>
 
         {/* Subheading - Static on mobile, animate on desktop */}
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 max-w-3xl mx-auto font-normal leading-relaxed px-4 md:animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          Modern weboldalak <span className="text-white font-semibold">gyors átfutással és fix határidővel.</span> Nem kell hónapokat várnod - mi 1-2 hét alatt leadjuk a kész projektet.
+          Modern webmegoldások <span className="text-white font-semibold">vállalatoknak, vállalkozóknak és magánszemélyeknek is.</span> Átlátható árazás, egyértelmű mérföldkövek, 1–2 hét alatti átfutás.
         </p>
 
         <p className="text-sm sm:text-base md:text-lg text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 md:animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <span className="text-white font-semibold">Gyorsan válaszolunk</span> minden megkeresésre. Minden nap elérhetőek vagyunk. Next.js/React technológia, keresőoptimalizálás, mobilra optimalizált, villámgyors teljesítmény.
+          <span className="text-white font-semibold">Konzultáció és árajánlat igénylése díjmentes.</span>
         </p>
 
         {/* CTA Buttons - Static on mobile, animate on desktop */}
@@ -109,7 +109,7 @@ export default function Hero() {
         {/* Trust Bar */}
         <div className="glass border border-blue-500/15 rounded-xl p-6 text-center md:animate-fade-in" style={{ animationDelay: '0.7s' }}>
           <p className="text-gray-300 text-sm sm:text-base">
-            <span className="text-white font-semibold">Tapasztalt fejlesztő csapatunk</span> építi a projektedet. Nincs ügynökségi árszabás, nincs hónapos várakozás. Kapsz egy ingyenes konzultációt, ahol megbeszéljük mit akarsz, aztán elkezdjük építeni.
+            <span className="text-white font-semibold">Tapasztalt fejlesztőcsapatunk</span> vállalati és kisvállalati projekteket is vállal. Átlátható munkafolyamat, fix határidők és díjmentes kezdő konzultáció.
           </p>
         </div>
       </div>

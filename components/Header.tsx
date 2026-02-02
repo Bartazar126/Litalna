@@ -33,8 +33,8 @@ export default function Header() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#080b14]/95 backdrop-blur-md shadow-lg shadow-blue-500/5 border-b border-blue-500/20'
-          : 'bg-[#080b14]/80 backdrop-blur-md border-b border-blue-500/10'
+          ? 'bg-[#0a0a0f]/95 backdrop-blur-md shadow-lg shadow-blue-500/5 border-b border-blue-500/20'
+          : 'bg-[#0a0a0f]/80 backdrop-blur-md border-b border-blue-500/10'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,7 @@ export default function Header() {
           {/* Logo: N + exuscode — egy méret, minden eszközön ugyanúgy */}
           <a
             href="/"
-            className="flex shrink-0 items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b14]"
+            className="flex shrink-0 items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
           >
             <span className="relative block h-8 w-11 shrink-0">
               <Image
