@@ -6,26 +6,27 @@ import TrustBadges from './TrustBadges';
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#080b14] via-[#0f1529] to-[#080b14]">
-      {/* Grid pattern - HIDDEN on mobile */}
-      <div className="absolute inset-0 grid-pattern opacity-25 hidden md:block"></div>
+      {/* Grid pattern - subtle on mobile, stronger on desktop */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.12] md:opacity-30"></div>
 
-      {/* Gradient orbs - HIDDEN on mobile for 90+ performance */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl opacity-30 hidden md:block"></div>
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-3xl opacity-30 hidden md:block"></div>
+      {/* Gradient orbs - subtle on mobile, richer on desktop */}
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-blue-500/15 md:bg-blue-500/25 rounded-full blur-3xl opacity-40 md:opacity-50"></div>
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-violet-500/15 md:bg-violet-500/25 rounded-full blur-3xl opacity-40 md:opacity-50"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-cyan-500/5 md:bg-cyan-500/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
         {/* Badge - Static on mobile, animate on desktop */}
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg md:animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600/15 border border-blue-500/30 mb-6 sm:mb-8 shadow-lg shadow-blue-500/10 md:animate-fade-in">
           <Zap className="w-4 h-4 text-blue-400" />
           <span className="text-sm font-semibold text-gray-200">Gyors, megbízható, professzionális</span>
         </div>
 
         {/* Main Heading - Static on mobile, animate on desktop */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight md:animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-10 leading-[0.95] tracking-tight md:animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <span className="block text-white">
             A weboldalad
           </span>
-          <span className="block mt-2 sm:mt-4 text-gradient">
+          <span className="block mt-2 sm:mt-4 text-gradient text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             1-2 hét alatt kész
           </span>
         </h1>
@@ -36,7 +37,7 @@ export default function Hero() {
         </p>
 
         <p className="text-sm sm:text-base md:text-lg text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 md:animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <span className="text-white font-semibold">2-3 órán belül válaszolunk</span> minden megkeresésre. Minden nap elérhetőek vagyunk. Next.js/React technológia, keresőoptimalizálás, mobilra optimalizált, villámgyors teljesítmény.
+          <span className="text-white font-semibold">Gyorsan válaszolunk</span> minden megkeresésre. Minden nap elérhetőek vagyunk. Next.js/React technológia, keresőoptimalizálás, mobilra optimalizált, villámgyors teljesítmény.
         </p>
 
         {/* CTA Buttons - Static on mobile, animate on desktop */}
@@ -65,7 +66,7 @@ export default function Hero() {
           {/* Main stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {[
-              { number: '2-3 óra', label: 'Válaszidő', Icon: Zap, color: 'from-blue-500 to-cyan-600' },
+              { number: 'Gyors', label: 'Válaszidő', Icon: Zap, color: 'from-blue-500 to-cyan-600' },
               { number: '7 nap', label: 'Heti elérhetőség', Icon: Clock, color: 'from-green-500 to-emerald-600' },
               { number: '24-48 óra', label: 'Projekt start', Icon: Rocket, color: 'from-purple-500 to-purple-600' },
               { number: '1-2 hét', label: 'Átfutási idő', Icon: Zap, color: 'from-cyan-500 to-cyan-600' },
@@ -84,10 +85,10 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Value Props - one-liners */}
+            {/* Value Props - one-liners */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {[
-              { icon: '⚡', text: 'Gyors Visszajelzés', subtext: '2-3 órán belül válaszolunk emailre, telefonra, chatbe. Minden nap elérhetőek vagyunk 8-22 óráig.' },
+              { icon: '⚡', text: 'Gyors Visszajelzés', subtext: 'Villámgyorsan válaszolunk emailre, telefonra, chatbe. Minden nap elérhetőek vagyunk 8-22 óráig.' },
               { icon: '🔧', text: 'Fix Határidők', subtext: 'Pontosan tudjuk, mikor lesz kész a projekted. 1-2 hét alatt átfutás, egyértelmű mérföldkövek. Nem csúszunk.' },
               { icon: '💎', text: 'Modern Technológia', subtext: 'Next.js/React stack. Villámgyors betöltés, SEO ready, mobilra optimalizált. Nem WordPress káosz.' },
             ].map((item, index) => (

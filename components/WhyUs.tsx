@@ -7,8 +7,8 @@ export default function WhyUs() {
     {
       icon: Zap,
       title: 'Nem kell napokat várnod válaszra',
-      description: 'Írsz egy emailt és napokig csend? Nálunk ez nem létezik. 2-3 órán belül válaszolunk minden megkeresésre. Email, telefon, chat - gyorsan reagálunk. Értékeljük az idődet, és tudjuk mennyire fontos hogy gyorsan haladj a projekteddel.',
-      stat: '2-3 óra',
+      description: 'Írsz egy emailt és napokig csend? Nálunk ez nem létezik. Villámgyorsan válaszolunk minden megkeresésre. Email, telefon, chat - gyorsan reagálunk. Értékeljük az idődet, és tudjuk mennyire fontos hogy gyorsan haladj a projekteddel.',
+      stat: 'Gyors',
       color: 'from-blue-500 to-cyan-500'
     },
     {
@@ -59,12 +59,12 @@ export default function WhyUs() {
 
   return (
     <section className="py-20 sm:py-32 px-4 bg-[#030712] relative overflow-hidden">
-      {/* Background pattern - Hidden on mobile */}
-      <div className="absolute inset-0 grid-pattern opacity-30 hidden md:block"></div>
-
-      {/* Gradient orbs - Hidden on mobile */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl hidden md:block"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl hidden md:block"></div>
+      {/* Background - subtle on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
+      {/* Gradient orbs */}
+      <div className="absolute top-20 left-10 w-64 h-64 md:w-80 md:h-80 bg-blue-400/10 md:bg-blue-400/15 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 bg-purple-400/10 md:bg-purple-400/15 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/3 right-0 w-48 h-48 bg-violet-500/8 rounded-full blur-3xl hidden md:block"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -77,15 +77,16 @@ export default function WhyUs() {
           </div>
 
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4"
           >
             Gyors válaszidő, <span className="text-gradient">profi munka</span>
           </h2>
+          <div className="section-accent-line mx-auto mb-6"></div>
 
           <p
             className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            2-3 óra válaszidő minden megkeresésre. 24-48 óra projekt indítás. Modern Next.js/React/TypeScript stack.
+            Azonnali reakció a megkeresésekre. 24-48 óra projekt indítás. Modern Next.js/React/TypeScript stack.
             <span className="font-bold text-gradient"> Gyors átfutás, professzionális kivitelezés.</span>
           </p>
         </div>

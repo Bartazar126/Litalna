@@ -89,10 +89,16 @@ body {
   background-clip: text;
 }
 
-/* Desktop only: animated gradient */
+/* Desktop only: animated gradient (respect reduced motion for PageSpeed/a11y) */
 @media (min-width: 769px) {
   .text-gradient {
     animation: gradient-shift 8s ease infinite;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient,
+  .text-gradient-pink {
+    animation: none !important;
   }
 }
 
@@ -111,9 +117,19 @@ body {
   }
 }
 
-/* Smooth scrolling */
+/* Logo "code" – subtle glow so it pops next to the N */
+.logo-code-glow {
+  text-shadow: 0 0 12px rgba(59, 130, 246, 0.25), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+/* Smooth scrolling (respect reduced motion for PageSpeed/a11y) */
 html {
   scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Custom Selection Color */
@@ -198,6 +214,23 @@ html {
     linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+/* Section divider - gradient line between sections */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25), transparent);
+  margin: 0 auto;
+  max-width: 60rem;
+}
+
+/* Accent line under section titles */
+.section-accent-line {
+  width: 4rem;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  margin-top: 0.75rem;
 }
 
 /* Better focus states */

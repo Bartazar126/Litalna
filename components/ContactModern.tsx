@@ -94,11 +94,11 @@ export default function ContactModern() {
       </AnimatePresence>
 
       {/* Background */}
-      <div className="absolute inset-0 grid-pattern opacity-30"></div>
-      
+      <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
       {/* Gradient orbs */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-80 h-80 md:w-96 md:h-96 bg-purple-500/10 md:bg-purple-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 bg-blue-500/10 md:bg-blue-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/8 rounded-full blur-3xl hidden md:block"></div>
 
       <div ref={ref} className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
@@ -111,6 +111,7 @@ export default function ContactModern() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
             Kérj <span className="text-gradient">ajánlatot</span>
           </h2>
+          <div className="section-accent-line mx-auto mb-4"></div>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
             Töltsd ki az űrlapot vagy hívj minket. <span className="font-bold text-white">2-3 órán belül válaszolunk.</span> Minden nap elérhetőek vagyunk 8-22 óra között.
           </p>

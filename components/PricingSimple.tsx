@@ -102,11 +102,11 @@ export default function PricingSimple() {
   return (
     <section id="pricing" className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#080b14] via-[#0f1529] to-[#080b14] relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 grid-pattern opacity-25"></div>
-      
+      <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-30"></div>
       {/* Gradient orbs */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-violet-500/15 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 right-10 w-80 h-80 md:w-96 md:h-96 bg-violet-500/12 md:bg-violet-500/18 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 md:w-96 md:h-96 bg-blue-500/12 md:bg-blue-500/18 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500/8 rounded-full blur-3xl hidden md:block"></div>
       
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -119,8 +119,9 @@ export default function PricingSimple() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
             <span className="text-gradient">Árazás</span>
           </h2>
+          <div className="section-accent-line mx-auto mb-4"></div>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
-            Fix árazás, nincs meglepetés. <span className="text-gradient">Nincs havi díj</span>, egyszeri fizetés. Minden csomag testreszabható - kérj ajánlatot, 2-3 órán belül válaszolunk.
+            Fix árazás, nincs meglepetés. <span className="text-gradient">Nincs havi díj</span>, egyszeri fizetés. Minden csomag testreszabható - kérj ajánlatot, hamar válaszolunk.
           </p>
         </motion.div>
 
@@ -132,10 +133,10 @@ export default function PricingSimple() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              whileHover={{ y: -8, scale: plan.popular ? 1.03 : 1.02 }}
+              whileHover={{ y: -8, scale: plan.popular ? 1.03 : 1.02, transition: { duration: 0.15 } }}
               className={`relative glass border-2 ${getColorClasses(plan.color, 'border')} ${
                 plan.popular ? 'lg:scale-105 lg:shadow-2xl' : ''
-              } p-6 sm:p-8 rounded-2xl transition-all duration-300 ${getColorClasses(plan.color, 'shadow')} flex flex-col`}
+              } p-6 sm:p-8 rounded-2xl transition-[transform,box-shadow,border-color] duration-150 ease-out ${getColorClasses(plan.color, 'shadow')} flex flex-col`}
             >
               {/* Popular Badge */}
               {plan.popular && (
@@ -212,7 +213,7 @@ export default function PricingSimple() {
             </h3>
             <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
               <span className="text-white font-semibold">Egyik csomag sem passzol tökéletesen?</span> Nincs gond. Minden projekt egyedi - kérj testreszabott ajánlatot. 
-              <span className="text-gradient"> 2-3 órán belül részletes árajánlatot küldünk.</span> Booking rendszer, foglalási funkciók, egyedi integrációk - minden megoldható.
+              <span className="text-gradient"> Pár órán belül részletes árajánlatot küldünk.</span> Booking rendszer, foglalási funkciók, egyedi integrációk - minden megoldható.
             </p>
             <motion.a
               href="/ajanlat"

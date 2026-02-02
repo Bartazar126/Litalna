@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const LOGO_SRC = 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_limit,h_64,w_200,f_auto,q_auto,dpr_2/v1770048979/NexusLogo_copy_skdi9i.png';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,12 +40,30 @@ export default function Header() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <a 
-            href="/" 
-            className="text-xl md:text-2xl font-bold text-white tracking-tight"
+          {/* Logo: N + exuscode — egy méret, minden eszközön ugyanúgy */}
+          <a
+            href="/"
+            className="flex shrink-0 items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b14]"
           >
-            <span className="text-gradient">Nexus</span>code
+            <span className="relative block h-8 w-11 shrink-0">
+              <Image
+                src={LOGO_SRC}
+                alt="Nexuscode"
+                fill
+                sizes="44px"
+                className="object-contain object-left"
+                priority
+                fetchPriority="high"
+              />
+            </span>
+            <span className="w-px h-4 shrink-0 self-center bg-gradient-to-b from-transparent via-blue-500/40 to-transparent -ml-3 mr-1 shrink-0" aria-hidden />
+            <span className="flex flex-col items-start -ml-2 min-w-0">
+              <span className="mb-0.5 w-full max-w-[4rem] h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" aria-hidden />
+              <span className="pb-0.5 text-sm font-semibold leading-none tracking-tight opacity-90">
+                <span className="text-gray-300">exus</span>
+                <span className="text-gradient logo-code-glow">code</span>
+              </span>
+            </span>
           </a>
 
           {/* Desktop Navigation */}

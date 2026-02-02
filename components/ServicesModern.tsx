@@ -6,7 +6,7 @@ const services = [
   {
     icon: Zap,
     title: 'Gyors Visszajelzés',
-    description: '2-3 órán belül válaszolunk. Email, telefon, chat - minden csatornán. Minden nap 8-22 óra között. Nem kell napokat várnod, gyorsan reagálunk.',
+    description: 'Azonnal reagálunk. Email, telefon, chat - minden csatornán. Minden nap 8-22 óra között. Nem kell napokat várnod, gyorsan reagálunk.',
     color: 'from-blue-500 to-cyan-600',
   },
   {
@@ -44,12 +44,12 @@ const services = [
 export default function ServicesModern() {
   return (
     <section id="services" className="py-12 sm:py-20 md:py-28 px-4 bg-[#030712] relative overflow-hidden">
-      {/* Background elements - Hidden on mobile */}
-      <div className="absolute inset-0 grid-pattern opacity-30 hidden md:block"></div>
-      
-      {/* Gradient orbs - Hidden on mobile */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl hidden md:block"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl hidden md:block"></div>
+      {/* Background - subtle on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
+      {/* Gradient orbs */}
+      <div className="absolute top-20 left-10 w-80 h-80 md:w-96 md:h-96 bg-blue-500/10 md:bg-blue-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 bg-purple-500/10 md:bg-purple-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl hidden md:block"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -57,8 +57,9 @@ export default function ServicesModern() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
             Mit <span className="text-gradient">kapsz tőlünk?</span>
           </h2>
+          <div className="section-accent-line mb-4"></div>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
-            2-3 óra válaszidő, minden nap elérhetőek vagyunk, 24-48 órán belül indulunk. Modern Next.js stack, gyors átfutás, fix határidők. <span className="text-white font-semibold">Tapasztalt fejlesztő csapat</span> dolgozik a projekten.
+            Gyors kommunikáció, minden nap elérhetőek vagyunk, 24-48 órán belül indulunk. Modern Next.js stack, gyors átfutás, fix határidők. <span className="text-white font-semibold">Tapasztalt fejlesztő csapat</span> dolgozik a projekten.
           </p>
         </div>
 

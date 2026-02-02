@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Nexuscode | Modern Weboldal Fejlesztés 80.000 Ft-tól',
-  description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. 2-3 óra válaszidő. Webshop, landing page, vállalati oldal készítés.',
+  description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. Gyors válaszidő. Webshop, landing page, vállalati oldal készítés.',
   keywords: 'honlapkészítés, weboldal készítés, weboldal fejlesztés, egyedi weboldal, next.js fejlesztés, react fejlesztés, seo optimalizálás, gyors weboldal, olcsó honlap, prémium webdesign, nexuscode',
   authors: [{ name: 'Nexuscode Team' }],
   creator: 'Nexuscode',
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/icon-192.png',
+    icon: 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_fit,h_64,w_64,f_auto,q_auto/v1770048979/NexusLogo_copy_skdi9i.png',
+    apple: 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_fit,h_180,w_180,f_auto,q_auto/v1770048979/NexusLogo_copy_skdi9i.png',
   },
 };
 
@@ -87,16 +87,14 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Nexuscode" />
         
-        {/* Preconnect for faster 3rd party loads (Added for PageSpeed) */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Preconnect / dns-prefetch for LCP and 3rd party (PageSpeed) */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        
-        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
         <link rel="canonical" href="https://nexuscode.hu" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
         <StructuredData />
       </head>
       <body

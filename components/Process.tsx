@@ -44,12 +44,12 @@ const steps = [
 export default function Process() {
   return (
     <section className="py-12 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#030712] via-[#0a0a1f] to-[#030712] relative overflow-hidden">
-      {/* Background - Hidden on mobile */}
-      <div className="absolute inset-0 grid-pattern opacity-30 hidden md:block"></div>
-      
-      {/* Gradient orbs - Hidden on mobile */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl hidden md:block"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl hidden md:block"></div>
+      {/* Background - subtle on mobile */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.15] md:opacity-35"></div>
+      {/* Gradient orbs */}
+      <div className="absolute top-20 right-10 w-80 h-80 md:w-96 md:h-96 bg-cyan-500/10 md:bg-cyan-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 md:w-96 md:h-96 bg-blue-500/10 md:bg-blue-500/15 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500/5 rounded-full blur-3xl hidden md:block"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -57,6 +57,7 @@ export default function Process() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
             <span className="text-gradient">Munkamenet</span>
           </h2>
+          <div className="section-accent-line mb-4"></div>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 font-normal">
             6 lépésben a kész weboldalig. Átlátható folyamat, fix határidők, folyamatos státusz frissítések. Professzionális projekt menedzsment.
           </p>

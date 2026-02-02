@@ -1,7 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { Facebook, Twitter, Instagram, Linkedin, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+const LOGO_SRC = 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_limit,h_64,w_200,f_auto,q_auto,dpr_2/v1770048979/NexusLogo_copy_skdi9i.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -45,11 +48,30 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold text-gradient mb-4">
-              Nexuscode
-            </h3>
+            <a
+              href="/"
+              className="inline-flex items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
+            >
+              <span className="relative block h-8 w-11 shrink-0">
+                <Image
+                  src={LOGO_SRC}
+                  alt="Nexuscode"
+                  fill
+                  sizes="44px"
+                  className="object-contain object-left"
+                />
+              </span>
+              <span className="w-px h-4 shrink-0 self-center bg-gradient-to-b from-transparent via-blue-500/40 to-transparent -ml-3 mr-1 shrink-0" aria-hidden />
+              <span className="flex flex-col items-start -ml-2 min-w-0">
+                <span className="mb-0.5 w-full max-w-[4rem] h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" aria-hidden />
+                <span className="pb-0.5 text-sm font-semibold leading-none tracking-tight opacity-90">
+                  <span className="text-gray-300">exus</span>
+                  <span className="text-gradient logo-code-glow">code</span>
+                </span>
+              </span>
+            </a>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              <span className="font-bold text-white">Gyors, megbízható honlapfejlesztés.</span> Professzionális fejlesztő csapatunk építi a projektedet. Minden nap elérhetőek vagyunk 8-22 óráig. 2-3 óra válaszidő garantálva.
+              <span className="font-bold text-white">Gyors, megbízható honlapfejlesztés.</span> Professzionális fejlesztő csapatunk építi a projektedet. Minden nap elérhetőek vagyunk 8-22 óráig.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
@@ -136,7 +158,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-cyan-400 flex-shrink-0">⏰</span>
-                <span className="font-semibold text-white">Minden nap 8-22 óráig<br /><span className="text-sm text-gradient">2-3 óra válaszidő garantálva</span></span>
+                <span className="font-semibold text-white">Minden nap 8-22 óráig<br /><span className="text-sm text-gradient">Gyors visszajelzés garantálva</span></span>
               </li>
             </ul>
           </motion.div>

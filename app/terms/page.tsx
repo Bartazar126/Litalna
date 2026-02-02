@@ -77,7 +77,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-white mb-4">4. Ajánlatkérés és szerződéskötés</h2>
             <ul className="list-disc list-inside space-y-2">
               <li>Az ajánlatkérő űrlap kitöltésével az Ügyfél ajánlatot kér.</li>
-              <li>A Szolgáltató 2-3 órán belül válaszol részletes árajánlattal.</li>
+              <li>A Szolgáltató hamar válaszol részletes árajánlattal.</li>
               <li>A szerződés az árajánlat írásbeli (email) elfogadásával jön létre.</li>
               <li>A projekt 24-48 órán belül indul a szerződéskötés után.</li>
             </ul>
@@ -171,7 +171,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-white mb-4">13. Egyéb rendelkezések</h2>
             <ul className="list-disc list-inside space-y-2">
               <li>Minden kommunikáció emailben vagy telefonon történik.</li>
-              <li>Elérhetőség: minden nap 8-22 óra között, 2-3 óra válaszidővel.</li>
+              <li>Elérhetőség: minden nap 8-22 óra között, gyors válaszidővel.</li>
               <li>Az ÁSZF módosítását az Ügyfelek felé 15 nappal előre közöljük.</li>
             </ul>
           </section>
@@ -183,7 +183,7 @@ export default function TermsPage() {
               <p><strong>Email:</strong> <a href="mailto:hello@nexuscode.hu" className="text-blue-400 hover:underline">hello@nexuscode.hu</a></p>
               <p><strong>Telefon:</strong> +36 30 993 2454</p>
               <p><strong>Elérhetőség:</strong> Minden nap 8-22 óra között</p>
-              <p><strong>Válaszidő:</strong> 2-3 óra</p>
+              <p><strong>Válaszidő:</strong> Gyors</p>
             </div>
           </section>
         </div>
