@@ -58,7 +58,8 @@ export default function AjanlatPage() {
             event_label: 'Ajánlatkérés',
           });
         }
-        router.push('/koszonjuk');
+        // Rövid késleltetés, hogy a GA4 kérés biztosan elküldődjön az átirányítás előtt
+        setTimeout(() => router.push('/koszonjuk'), 600);
       } else {
         alert('Hiba történt az ajánlatkérés küldésekor. Kérjük próbálja újra később, vagy írjon emailt: hello@nexuscode.hu');
       }
