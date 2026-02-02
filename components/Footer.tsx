@@ -1,18 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { Linkedin, Github, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const LOGO_SRC = 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_limit,h_64,w_200,f_auto,q_auto,dpr_2/v1770048979/NexusLogo_copy_skdi9i.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
-  ];
 
   const quickLinks = [
     { name: 'Kezdőlap', href: '/' },
@@ -69,20 +64,6 @@ export default function Footer() {
             <p className="text-gray-400 mb-6 leading-relaxed">
               <span className="font-bold text-white">Gyors, megbízható honlapfejlesztés.</span> Professzionális fejlesztő csapatunk építi a projektedet. Minden nap elérhetőek vagyunk 8-22 óráig.
             </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 glass border border-blue-500/30 hover:border-blue-400/50 rounded-lg flex items-center justify-center transition-all duration-300"
-                >
-                  <social.icon size={18} />
-                </motion.a>
-              ))}
-            </div>
           </motion.div>
 
           {/* Quick Links */}

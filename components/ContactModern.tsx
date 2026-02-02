@@ -73,7 +73,7 @@ export default function ContactModern() {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-20 md:py-28 px-4 bg-[#030712] relative overflow-hidden">
+    <section id="contact" className="scroll-mt-24 py-12 sm:py-20 md:py-28 px-4 bg-[#030712] relative overflow-hidden">
       {/* Notification Toast */}
       <AnimatePresence>
         {notification.show && (
