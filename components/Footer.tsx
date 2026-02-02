@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Facebook, Twitter, Instagram, Linkedin, Github, Mail } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const LOGO_SRC = 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_limit,h_64,w_200,f_auto,q_auto,dpr_2/v1770048979/NexusLogo_copy_skdi9i.png';
@@ -10,9 +10,6 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Github, href: '#', label: 'GitHub' },
   ];
@@ -20,7 +17,6 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Kezdőlap', href: '/' },
     { name: 'Szolgáltatások', href: '/#services' },
-    { name: 'Referenciák', href: '/references' },
     { name: 'Blog', href: '/blog' },
     { name: 'Ajánlatkérés', href: '/ajanlat' },
     { name: 'Kapcsolat', href: '/#contact' },
