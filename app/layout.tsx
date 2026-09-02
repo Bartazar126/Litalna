@@ -111,19 +111,17 @@ export default function RootLayout({
         {/* Google Analytics (noscript) - Optional, but good practice if you had GTM before */}
         {/* Removed GTM noscript as we switched to direct GA4 implementation */}
 
-        {/* Delayed Google Analytics (GA4) */}
+        {/* Google-cimkek: a gtag-stub es a Consent Mode azonnal el, a nehez
+            gtag.js konyvtar viszont csak az elso interakciora (vagy 6 mp
+            utan) toltodik. Az esemenyek addig a dataLayerben sorban allnak. */}
         <Script
-          id="ga4-delayed"
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-DK6GNH27QV"
-        />
-        <Script
-          id="ga4-config"
-          strategy="lazyOnload"
+          id="gtag-bootstrap"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
 
               // Consent Mode v2: alapbol minden tiltva, a cookie-sav dontese old fel
               gtag('consent', 'default', {
@@ -146,21 +144,31 @@ export default function RootLayout({
               } catch (e) {}
 
               gtag('js', new Date());
-
-              // Initial config without pageview to prevent double counting if manual trigger is used
-              gtag('config', 'G-DK6GNH27QV', {
-                'send_page_view': false
-              });
-
-              // Google Ads konverziomeres
+              gtag('config', 'G-DK6GNH27QV', { 'send_page_view': false });
               gtag('config', 'AW-18422187691');
-
-              // Delayed pageview for PageSpeed
               setTimeout(function() {
-                gtag('event', 'page_view', {
-                  'send_to': 'G-DK6GNH27QV'
+                gtag('event', 'page_view', { 'send_to': 'G-DK6GNH27QV' });
+              }, 3500);
+
+              // A konyvtar betoltese: elso interakcio vagy 6 mp
+              (function() {
+                var loaded = false;
+                function loadGtag() {
+                  if (loaded) return;
+                  loaded = true;
+                  var s = document.createElement('script');
+                  s.async = true;
+                  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-DK6GNH27QV';
+                  document.head.appendChild(s);
+                  ['scroll','pointerdown','keydown','touchstart'].forEach(function(e){
+                    window.removeEventListener(e, loadGtag);
+                  });
+                }
+                ['scroll','pointerdown','keydown','touchstart'].forEach(function(e){
+                  window.addEventListener(e, loadGtag, { passive: true, once: true });
                 });
-              }, 3500); // 3.5s delay
+                setTimeout(loadGtag, 6000);
+              })();
             `,
           }}
         />
