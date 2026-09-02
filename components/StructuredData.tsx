@@ -2,20 +2,18 @@ export default function StructuredData() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Honlapkészítő',
+    name: 'Nexuscode',
     url: 'https://nexuscode.hu',
-    logo: 'https://nexuscode.hu/logo.png',
-    description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React alapú, SEO optimalizált, mobilbarát weboldalak.',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Példa utca 12.',
-      addressLocality: 'Budapest',
-      postalCode: '1051',
-      addressCountry: 'HU',
+    logo: 'https://nexuscode.hu/logo-n.png',
+    description:
+      'A Nexuscode digitális technológiai stúdió. Weboldal, webáruház, egyedi rendszer és marketing, egy kézben, fix áron.',
+    founder: {
+      '@type': 'Person',
+      name: 'Nagy Norbert József',
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+36-30-123-4567',
+      telephone: '+36-30-993-2454',
       contactType: 'customer service',
       email: 'hello@nexuscode.hu',
       availableLanguage: ['Hungarian'],
@@ -25,16 +23,6 @@ export default function StructuredData() {
         opens: '08:00',
         closes: '22:00',
       },
-    },
-    sameAs: [
-      'https://facebook.com/honlaptervezo',
-      'https://instagram.com/honlaptervezo',
-      'https://linkedin.com/company/honlaptervezo',
-    ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '150',
     },
     priceRange: '80000-500000 HUF',
   };
@@ -47,7 +35,7 @@ export default function StructuredData() {
     description: 'Professzionális weboldal fejlesztés 1-2 hét alatt. Next.js, React, mobilbarát, SEO optimalizált.',
     provider: {
       '@type': 'Organization',
-      name: 'Honlapkészítő',
+      name: 'Nexuscode',
     },
     areaServed: {
       '@type': 'Country',

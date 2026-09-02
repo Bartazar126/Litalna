@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className={h2}>1. Általános információk</h2>
             <p className={p}>
-              A Nexuscode (üzemeltető: Nagy Norbert E.V., a továbbiakban: &quot;mi&quot;, &quot;miénk&quot;, &quot;minket&quot;) elkötelezett a
+              A Nexuscode (üzemeltető: Nagy Norbert József E.V., a továbbiakban: &quot;mi&quot;, &quot;miénk&quot;, &quot;minket&quot;) elkötelezett a
               személyes adatok védelme iránt. Ez az adatvédelmi nyilatkozat ismerteti, hogyan gyűjtjük, használjuk és
               védjük az Ön személyes adatait, amikor weboldalunkat használja.
             </p>
@@ -37,9 +37,8 @@ export default function PrivacyPage() {
           <section>
             <h2 className={h2}>2. Adatkezelő adatai</h2>
             <div className="card p-6 text-[14.5px] text-[color:var(--foreground)] leading-relaxed space-y-1">
-              <p><strong className="text-[color:var(--heading)]">Név:</strong> Nagy Norbert E.V.</p>
+              <p><strong className="text-[color:var(--heading)]">Név:</strong> Nagy Norbert József E.V.</p>
               <p><strong className="text-[color:var(--heading)]">Adószám:</strong> 57631336-1-36</p>
-              <p><strong className="text-[color:var(--heading)]">Székhely:</strong> 5300 Karcag, Kisújszállási út 44/D</p>
               <p><strong className="text-[color:var(--heading)]">E-mail:</strong> hello@nexuscode.hu</p>
               <p><strong className="text-[color:var(--heading)]">Telefon:</strong> +36 30 993 2454</p>
               <p><strong className="text-[color:var(--heading)]">Weboldal:</strong> nexuscode.hu</p>

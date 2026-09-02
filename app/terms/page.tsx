@@ -29,9 +29,8 @@ export default function TermsPage() {
           <section>
             <h2 className={h2}>1. A Szolgáltató adatai</h2>
             <div className="card p-6 text-[14.5px] text-[color:var(--foreground)] leading-relaxed space-y-1">
-              <p><strong className={strong}>Név:</strong> Nagy Norbert E.V. (Nexuscode)</p>
+              <p><strong className={strong}>Név:</strong> Nagy Norbert József E.V. (Nexuscode)</p>
               <p><strong className={strong}>Adószám:</strong> 57631336-1-36</p>
-              <p><strong className={strong}>Székhely:</strong> 5300 Karcag, Kisújszállási út 44/D</p>
               <p><strong className={strong}>E-mail:</strong> hello@nexuscode.hu</p>
               <p><strong className={strong}>Telefon:</strong> +36 30 993 2454</p>
               <p><strong className={strong}>Weboldal:</strong> nexuscode.hu</p>
@@ -42,7 +41,7 @@ export default function TermsPage() {
           <section>
             <h2 className={h2}>2. Általános rendelkezések</h2>
             <p className={p}>
-              Jelen Általános Szerződési Feltételek (a továbbiakban: ÁSZF) a Nexuscode (Nagy Norbert E.V.) által
+              Jelen Általános Szerződési Feltételek (a továbbiakban: ÁSZF) a Nexuscode (Nagy Norbert József E.V.) által
               nyújtott weboldal fejlesztési szolgáltatások igénybevételére vonatkozó feltételeket határozzák meg.
             </p>
             <p className={`${p} mt-3`}>A szolgáltatás igénybevételével az Ügyfél elfogadja jelen ÁSZF-ben foglalt feltételeket.</p>

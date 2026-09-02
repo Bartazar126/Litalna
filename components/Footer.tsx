@@ -41,7 +41,6 @@ export default function Footer() {
             <a href="tel:+36309932454" className="block text-white/50 hover:text-white transition-colors">
               +36 30 993 2454
             </a>
-            <span className="block text-white/30">5300 Karcag, Kisújszállási út 44/D</span>
           </div>
         </div>
 
