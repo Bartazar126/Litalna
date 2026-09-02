@@ -418,10 +418,11 @@ button {
 }
 
 /* A billegés késleltetve indul, hogy a hero hamar "kész képet" adjon
-   (Speed Index): az első másodpercekben a kocka áll. */
-.cube-lg { width: 190px; height: 190px; animation-duration: 30s; animation-delay: 3.5s; }
-.cube-md { width: 54px; height: 54px; animation-duration: 18s; animation-delay: 3.5s; }
-.cube-sm { width: 38px; height: 38px; animation-duration: 14s; animation-delay: 3.5s; }
+   (Speed Index) - a fill-mode: backwards révén a késleltetés alatt is a
+   helyes 3D-s alappózban áll a kocka, nem laposan. */
+.cube-lg { width: 190px; height: 190px; animation-duration: 30s; animation-delay: 3.5s; animation-fill-mode: backwards; }
+.cube-md { width: 54px; height: 54px; animation-duration: 18s; animation-delay: 3.5s; animation-fill-mode: backwards; }
+.cube-sm { width: 38px; height: 38px; animation-duration: 14s; animation-delay: 3.5s; animation-fill-mode: backwards; }
 
 .cube-face {
   position: absolute;
