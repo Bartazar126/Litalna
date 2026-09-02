@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
@@ -161,7 +161,7 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // Send Admin Email
+    // Csak az admin-értesítőt várjuk meg, hogy gyors legyen a válasz
     await transporter.sendMail({
       from: `"Nexuscode System" <${emailUser}>`,
       to: emailUser,
@@ -170,12 +170,18 @@ export async function POST(request: Request) {
       html: adminHtml,
     });
 
-    // Send Confirmation Email to User
-    await transporter.sendMail({
-      from: `"Nexuscode" <${emailUser}>`,
-      to: email,
-      subject: userSubject,
-      html: userHtml,
+    // A visszaigazoló email a válasz elküldése UTÁN megy ki
+    after(async () => {
+      try {
+        await transporter.sendMail({
+          from: `"Nexuscode" <${emailUser}>`,
+          to: email,
+          subject: userSubject,
+          html: userHtml,
+        });
+      } catch (err) {
+        console.error('Visszaigazoló email hiba:', err);
+      }
     });
 
     return NextResponse.json(
