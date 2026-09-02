@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HashAnchorFix from '@/components/HashAnchorFix';
 import Hero from '@/components/home/Hero';
 
 // A hajtás alatti szekciók késleltetve töltődnek (PageSpeed)
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <HashAnchorFix />
       <Header />
       <main className="overflow-x-hidden">
         <Hero />
