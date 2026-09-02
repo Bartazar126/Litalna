@@ -16,9 +16,9 @@ const Faq = dynamic(() => import('@/components/home/Faq'), { loading: () => null
 const FinalCta = dynamic(() => import('@/components/home/FinalCta'), { loading: () => null });
 
 export const metadata: Metadata = {
-  title: 'Nexuscode — Digital Technology Studio',
+  title: 'Weboldal készítés fix áron, pár hét alatt | Nexuscode',
   description:
-    'A Nexuscode digitális technológiai stúdió. Weboldal, webáruház, egyedi rendszer és marketing, egy kézben, érthetően, fix áron. Nem csak weboldalakat építünk. A jövőt építjük.',
+    'Honlapkészítés, webáruház, egyedi rendszer és marketing, egy kézben, érthetően, fix áron. Céges weboldal készítés 80 000 Ft-tól, 1-2 hét alatt. Nem csak weboldalakat építünk. A jövőt építjük.',
   openGraph: {
     title: 'Nexuscode — Digital Technology Studio',
     description:

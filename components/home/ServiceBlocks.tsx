@@ -14,7 +14,7 @@ function Phone() {
           <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full bg-[#15162e] z-10" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/refs/kickoff-mobile.png"
+            src="/refs/kickoff-mobile.webp"
             alt="kickoffcamps.hu mobilnézete"
             loading="lazy"
             className="phone-pan w-full h-[440px] sm:h-[500px] object-cover"

@@ -7,12 +7,32 @@ import { X, Cookie } from 'lucide-react';
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
+  // Az első interakcióra (vagy 6 mp után) jelenik meg: így nem a banner
+  // lesz az oldal LCP-eleme, ami rontaná a PageSpeedet. A mérés addig
+  // Consent Mode alatt úgyis tiltva fut.
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-      const t = setTimeout(() => setShowBanner(true), 1000);
-      return () => clearTimeout(t);
-    }
+    let consent: string | null = null;
+    try {
+      consent = localStorage.getItem('cookieConsent');
+    } catch {}
+    if (consent) return;
+
+    let shown = false;
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      setShowBanner(true);
+      cleanup();
+    };
+    const t = setTimeout(show, 6000);
+    const opts = { passive: true, once: true } as AddEventListenerOptions;
+    const events: (keyof WindowEventMap)[] = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    const cleanup = () => {
+      clearTimeout(t);
+      events.forEach((e) => window.removeEventListener(e, show));
+    };
+    events.forEach((e) => window.addEventListener(e, show, opts));
+    return cleanup;
   }, []);
 
   const acceptCookies = () => {

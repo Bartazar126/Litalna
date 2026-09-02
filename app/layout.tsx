@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import StructuredData from '@/components/StructuredData';
 import CookieConsent from '@/components/CookieConsent';
@@ -17,14 +17,6 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
   display: "swap",
   preload: true,
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
-  display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -76,8 +68,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/logo-n.png',
-    apple: '/logo-n.png',
+    icon: [
+      { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png',
   },
 };
 
@@ -109,7 +104,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
         {/* Google Analytics (noscript) - Optional, but good practice if you had GTM before */}
         {/* Removed GTM noscript as we switched to direct GA4 implementation */}

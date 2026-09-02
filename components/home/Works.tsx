@@ -8,13 +8,13 @@ import Reveal from './Reveal';
 const works = [
   {
     url: 'https://kickoffcamps.hu/',
-    img: '/refs/kickoffcamps.png',
+    img: '/refs/kickoffcamps.webp',
     domain: 'kickoffcamps.hu',
     label: 'Focitáborok, online jelentkezéssel',
   },
   {
     url: 'https://www.qualityroadkft.hu/',
-    img: '/refs/qualityroad.png',
+    img: '/refs/qualityroad.webp',
     domain: 'qualityroadkft.hu',
     label: 'Útépítő cég, ajánlatkérésre hangolva',
   },
