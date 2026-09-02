@@ -15,7 +15,9 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin", "latin-ext"],
-  display: "swap",
+  // 'optional': ha nem ér ide időben a font, marad a fallback, és nincs
+  // újrafestés, ami eltolná az LCP-t (a címsorok ebből a fontból mennek)
+  display: "optional",
   preload: true,
 });
 

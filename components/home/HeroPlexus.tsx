@@ -78,9 +78,13 @@ export default function HeroPlexus() {
 
       raf = requestAnimationFrame(animate);
     };
-    animate();
+
+    // Késleltetett indulás: a betöltés első másodperceiben a hero állóképet
+    // ad (jobb Speed Index és kevesebb fő-szál terhelés), utána indul a háló.
+    const startDelay = setTimeout(animate, 3500);
 
     return () => {
+      clearTimeout(startDelay);
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
       clearTimeout(resizeTimeout);
