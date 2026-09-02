@@ -15,7 +15,8 @@ export default function Hero() {
             <p className="rise text-[11px] sm:text-[12px] font-semibold tracking-[0.3em] uppercase text-white/50 mb-5">
               Nexuscode <span className="text-[#b3a6ff]">·</span> Digital Technology Studio
             </p>
-            <h1 className="rise font-display text-[2.4rem] leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem] font-semibold text-white mb-5">
+            {/* Az LCP-elem: nem animáljuk, hogy azonnal fessen */}
+            <h1 className="font-display text-[2.4rem] leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem] font-semibold text-white mb-5">
               Az ügyfeleid már online vannak.
               <br />
               <span className="text-[#c7bfff]">Legyél ott te is.</span>
