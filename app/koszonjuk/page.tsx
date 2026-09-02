@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle, Clock, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AdsConversion from '@/components/AdsConversion';
 
 export const metadata: Metadata = {
   title: 'Köszönjük! | Nexuscode',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <div className="bg-white">
+      <AdsConversion />
       <Header current="" />
 
       <main className="min-h-[calc(100vh-64px)] flex items-center justify-center px-5 pt-[64px] bg-[color:var(--section)]">

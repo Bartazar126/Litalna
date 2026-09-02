@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowRight, CheckCircle2, AlertCircle, Mail, Phone } from 'lucide-react';
 import Reveal from './Reveal';
+import { ADS_CONVERSION_ID } from '@/components/AdsConversion';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -24,7 +25,14 @@ export default function FinalCta() {
         body: JSON.stringify(formData),
       });
       setStatus(res.ok ? 'success' : 'error');
-      if (res.ok) setFormData({ name: '', email: '', phone: '', message: '' });
+      if (res.ok) {
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        // Google Ads konverzió: itt nincs átirányítás köszönőoldalra
+        const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+        if (typeof g === 'function') {
+          g('event', 'conversion', { send_to: ADS_CONVERSION_ID, value: 1.0, currency: 'HUF' });
+        }
+      }
     } catch {
       setStatus('error');
     }
