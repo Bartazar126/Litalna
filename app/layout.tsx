@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from '@/components/StructuredData';
+import CookieConsent from '@/components/CookieConsent';
 import Script from 'next/script';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
   display: "swap",
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  preload: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
   display: "swap",
   preload: false,
 });
@@ -67,8 +76,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_fit,h_64,w_64,f_auto,q_auto/v1770048979/NexusLogo_copy_skdi9i.png',
-    apple: 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_fit,h_180,w_180,f_auto,q_auto/v1770048979/NexusLogo_copy_skdi9i.png',
+    icon: '/logo-n.png',
+    apple: '/logo-n.png',
   },
 };
 
@@ -81,9 +90,9 @@ export default function RootLayout({
     <html lang="hu" className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="theme-color" content="#0a0a0f" />
-        <meta name="msapplication-TileColor" content="#0a0a0f" />
-        <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#fbfcfe" />
+        <meta name="msapplication-TileColor" content="#fbfcfe" />
+        <meta name="color-scheme" content="light" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -100,7 +109,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {/* Google Analytics (noscript) - Optional, but good practice if you had GTM before */}
         {/* Removed GTM noscript as we switched to direct GA4 implementation */}
@@ -118,12 +127,36 @@ export default function RootLayout({
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+
+              // Consent Mode v2: alapbol minden tiltva, a cookie-sav dontese old fel
+              gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied',
+                wait_for_update: 500
+              });
+              gtag('set', 'url_passthrough', true);
+              try {
+                if (localStorage.getItem('cookieConsent') === 'accepted') {
+                  gtag('consent', 'update', {
+                    ad_storage: 'granted',
+                    ad_user_data: 'granted',
+                    ad_personalization: 'granted',
+                    analytics_storage: 'granted'
+                  });
+                }
+              } catch (e) {}
+
               gtag('js', new Date());
-              
+
               // Initial config without pageview to prevent double counting if manual trigger is used
               gtag('config', 'G-DK6GNH27QV', {
-                'send_page_view': false 
+                'send_page_view': false
               });
+
+              // Google Ads konverziomeres
+              gtag('config', 'AW-18422187691');
 
               // Delayed pageview for PageSpeed
               setTimeout(function() {
@@ -136,6 +169,7 @@ export default function RootLayout({
         />
 
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

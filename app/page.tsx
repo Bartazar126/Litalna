@@ -1,25 +1,28 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
-import ParticleBackground from '@/components/ParticleBackground';
+import Hero from '@/components/home/Hero';
 
-// Below-the-fold: lazy load for PageSpeed 90+
-const ServicesModern = dynamic(() => import('@/components/ServicesModern'), { loading: () => null });
-const WhyUs = dynamic(() => import('@/components/WhyUs'), { loading: () => null });
-const PricingSimple = dynamic(() => import('@/components/PricingSimple'), { loading: () => null });
-const Process = dynamic(() => import('@/components/Process'), { loading: () => null });
-const TestimonialsModern = dynamic(() => import('@/components/TestimonialsModern'), { loading: () => null });
-const ContactModern = dynamic(() => import('@/components/ContactModern'), { loading: () => null });
-const CookieConsent = dynamic(() => import('@/components/CookieConsent'), { loading: () => null });
+// A hajtás alatti szekciók késleltetve töltődnek (PageSpeed)
+const Solutions = dynamic(() => import('@/components/home/Solutions'), { loading: () => null });
+const Works = dynamic(() => import('@/components/home/Works'), { loading: () => null });
+const ServiceBlocks = dynamic(() => import('@/components/home/ServiceBlocks'), { loading: () => null });
+const Guarantees = dynamic(() => import('@/components/home/Guarantees'), { loading: () => null });
+const Testimonials = dynamic(() => import('@/components/home/Testimonials'), { loading: () => null });
+const Process = dynamic(() => import('@/components/home/Process'), { loading: () => null });
+const Pricing = dynamic(() => import('@/components/home/Pricing'), { loading: () => null });
+const Faq = dynamic(() => import('@/components/home/Faq'), { loading: () => null });
+const FinalCta = dynamic(() => import('@/components/home/FinalCta'), { loading: () => null });
 
 export const metadata: Metadata = {
-  title: 'Honlapkészítés 1-2 Hét Alatt | Weboldal Fejlesztés 80.000 Ft-tól',
-  description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. Gyors válaszidő. Webshop, landing page, vállalati oldal készítés.',
+  title: 'Nexuscode — Digital Technology Studio',
+  description:
+    'A Nexuscode digitális technológiai stúdió. Weboldal, webáruház, egyedi rendszer és marketing, egy kézben, érthetően, fix áron. Nem csak weboldalakat építünk. A jövőt építjük.',
   openGraph: {
-    title: 'Honlapkészítés 1-2 Hét Alatt | 80.000 Ft-tól',
-    description: 'Gyors, professzionális weboldal fejlesztés. Next.js, React, mobilbarát, SEO optimalizált.',
+    title: 'Nexuscode — Digital Technology Studio',
+    description:
+      'Weboldal, webáruház, egyedi rendszer és marketing, egy kézben. A jövőt építjük.',
   },
   alternates: {
     canonical: 'https://nexuscode.hu',
@@ -32,21 +35,17 @@ export default function Home() {
       <Header />
       <main className="overflow-x-hidden">
         <Hero />
-        <div className="section-divider mx-4" aria-hidden />
-        <ServicesModern />
-        <div className="section-divider mx-4" aria-hidden />
-        <WhyUs />
-        <div className="section-divider mx-4" aria-hidden />
-        <PricingSimple />
-        <div className="section-divider mx-4" aria-hidden />
+        <Solutions />
+        <ServiceBlocks />
+        <Works />
+        <Guarantees />
+        <Testimonials />
         <Process />
-        <div className="section-divider mx-4" aria-hidden />
-        <TestimonialsModern />
-        <div className="section-divider mx-4" aria-hidden />
-        <ContactModern />
+        <Pricing />
+        <Faq />
+        <FinalCta />
       </main>
       <Footer />
-      <CookieConsent />
     </>
   );
 }

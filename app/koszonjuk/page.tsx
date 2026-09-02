@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { CheckCircle, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Clock, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Köszönjük! | Nexuscode',
@@ -12,37 +14,44 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#111118] to-[#0a0a0f] flex items-center justify-center px-4">
-      <div className="max-w-2xl w-full text-center">
-        <div className="glass border border-green-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-          {/* Background glow */}
-          <div className="absolute inset-0 bg-green-500/5"></div>
-          
-          <div className="relative z-10">
-            <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/20">
-              <CheckCircle className="text-white" size={40} />
+    <div className="bg-white">
+      <Header current="" />
+
+      <main className="min-h-[calc(100vh-64px)] flex items-center justify-center px-5 pt-[64px] bg-[color:var(--section)]">
+        <div className="max-w-[560px] w-full py-16">
+          <div className="card p-8 sm:p-12 text-center">
+            <div className="flex items-center justify-center w-[72px] h-[72px] rounded-full bg-emerald-50 mx-auto mb-6">
+              <CheckCircle size={38} className="text-emerald-500" />
             </div>
-            
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6">
-              Sikeres küldés!
+
+            <h1 className="font-display text-[26px] sm:text-[32px] font-semibold text-[color:var(--heading)] mb-3">
+              Megkaptuk, köszönjük!
             </h1>
-            
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
-              Köszönjük a megkeresést. Kollégánk <span className="text-green-400 font-bold">24 órán belül</span> felveszi Veled a kapcsolatot a megadott elérhetőségeken.
+            <p className="text-[15px] text-[color:var(--muted)] leading-relaxed mb-8">
+              Kollégánk <strong className="text-[color:var(--heading)]">24 órán belül</strong> felveszi veled a
+              kapcsolatot a megadott elérhetőségeken, és hozza a személyre szabott ajánlatot.
             </p>
-            
-            <div className="flex justify-center">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-500 to-violet-600 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/40"
-              >
-                <ArrowLeft size={20} />
-                Vissza a főoldalra
-              </Link>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-x-8 gap-y-2 mb-9 text-[13.5px] text-[color:var(--muted)]">
+              <span className="inline-flex items-center gap-2">
+                <Clock size={15} className="text-[color:var(--primary)]" />
+                Minden nap 8–22-ig
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <Phone size={15} className="text-[color:var(--primary)]" />
+                +36 30 993 2454
+              </span>
             </div>
+
+            <Link href="/" className="btn-primary">
+              <ArrowLeft size={16} />
+              Vissza a főoldalra
+            </Link>
           </div>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

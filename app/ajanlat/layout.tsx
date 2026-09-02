@@ -17,9 +17,5 @@ export default function AjanlatLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white [color-scheme:dark]" data-theme="dark">
-      {children}
-    </div>
-  );
+  return children;
 }

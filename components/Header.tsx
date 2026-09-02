@@ -1,133 +1,108 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Phone } from 'lucide-react';
 
-const LOGO_SRC = 'https://res.cloudinary.com/dldgqjxkn/image/upload/c_limit,h_64,w_200,f_auto,q_auto,dpr_2/v1770048979/NexusLogo_copy_skdi9i.png';
+const navItems = [
+  { name: 'Főoldal', href: '/' },
+  { name: 'Munkáink', href: '/#munkaink' },
+  { name: 'Szolgáltatások', href: '/#szolgaltatasok' },
+  { name: 'Árak', href: '/#arak' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Kapcsolat', href: '/#kapcsolat' },
+];
 
-export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: 'Kezdőlap', href: '/' },
-    { name: 'Szolgáltatások', href: '/#services' },
-    { name: 'Áraink', href: '/#pricing' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Kapcsolat', href: '/#contact' },
-  ];
+export default function Header({ current = 'Főoldal' }: { current?: string }) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#0a0a0f]/95 backdrop-blur-md shadow-lg shadow-blue-500/5 border-b border-blue-500/20'
-          : 'bg-[#0a0a0f]/80 backdrop-blur-md border-b border-blue-500/10'
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo: N + exuscode — egy méret, minden eszközön ugyanúgy */}
-          <a
-            href="/"
-            className="flex shrink-0 items-end gap-0 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
-          >
-            <span className="relative block h-8 w-11 shrink-0">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[color:var(--petrol)]/95 backdrop-blur-sm shadow-[0_2px_12px_rgba(10,8,45,0.35)]">
+      <nav className="max-w-[1240px] mx-auto px-5 sm:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logó */}
+          <a href="/" className="flex items-center gap-3 shrink-0" aria-label="Nexuscode, kezdőlap">
+            <span className="relative block h-10 w-10">
               <Image
-                src={LOGO_SRC}
-                alt="Nexuscode"
+                src="/logo-n.png"
+                alt=""
                 fill
-                sizes="44px"
-                className="object-contain object-left"
+                sizes="40px"
+                className="object-contain"
                 priority
                 fetchPriority="high"
               />
             </span>
-            <span className="w-px h-4 shrink-0 self-center bg-gradient-to-b from-transparent via-blue-500/40 to-transparent -ml-3 mr-1 shrink-0" aria-hidden />
-            <span className="flex flex-col items-start -ml-2 min-w-0">
-              <span className="mb-0.5 w-full max-w-[4rem] h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" aria-hidden />
-              <span className="pb-0.5 text-sm font-semibold leading-none tracking-tight opacity-90">
-                <span className="text-gray-300">exus</span>
-                <span className="text-gradient logo-code-glow">code</span>
+            <span className="leading-none">
+              <span className="block font-display text-[16px] font-bold tracking-[0.14em] text-white uppercase">
+                Nexuscode
+              </span>
+              <span className="block text-[8.5px] tracking-[0.28em] text-white/60 uppercase mt-1">
+                Digital Technology Studio
               </span>
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-white transition-colors duration-300 font-medium text-sm"
+                className={`px-3.5 py-2 rounded text-[13.5px] font-medium transition-colors duration-200 ${
+                  item.name === current
+                    ? 'bg-[color:var(--primary)] text-white'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
               >
                 {item.name}
               </a>
             ))}
           </div>
 
-          {/* CTA Button Desktop */}
-          <a
-            href="/ajanlat"
-            className="hidden md:block bg-gradient-to-r from-blue-600 via-blue-500 to-violet-600 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
-          >
-            Ajánlatkérés
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="tel:+36309932454"
+              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full text-white/85 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Hívás: +36 30 993 2454"
+            >
+              <Phone size={19} />
+            </a>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Mobil menü gomb */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="lg:hidden p-2 -mr-2 text-white/85 hover:text-white transition-colors"
+              aria-label={open ? 'Menü bezárása' : 'Menü megnyitása'}
+              aria-expanded={open}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden py-4 space-y-3 border-t border-white/10 overflow-hidden"
-            >
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-white transition-colors font-medium"
-                >
-                  {item.name}
-                </a>
-              ))}
+        {/* Mobil menü */}
+        <div
+          className="lg:hidden overflow-hidden transition-all duration-300 ease-out"
+          style={{ maxHeight: open ? '480px' : '0px', opacity: open ? 1 : 0 }}
+        >
+          <div className="py-4 border-t border-white/15 flex flex-col gap-1">
+            {navItems.map((item) => (
               <a
-                href="/ajanlat"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block bg-gradient-to-r from-blue-600 via-blue-500 to-violet-600 text-white px-6 py-2.5 rounded-lg text-center font-semibold shadow-lg"
+                key={item.name}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="py-2.5 px-2 rounded text-[15px] font-medium text-white/85 hover:text-white hover:bg-white/10 transition-colors"
               >
-                Ajánlatkérés
+                {item.name}
               </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            ))}
+            <a href="/ajanlat" onClick={() => setOpen(false)} className="btn-primary mt-3 mb-2 w-full">
+              Ajánlatkérés
+            </a>
+          </div>
+        </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }
