@@ -36,13 +36,18 @@ export default function Home() {
       <main className="overflow-x-hidden">
         <Hero />
         <Solutions />
+        {/* Régi horgony-álnevek: a hirdetési sitelinkek ezekre mutatnak */}
+        <span id="services" className="block scroll-mt-20" aria-hidden />
         <ServiceBlocks />
+        <span id="portfolio" className="block scroll-mt-20" aria-hidden />
         <Works />
         <Guarantees />
         <Testimonials />
         <Process />
+        <span id="pricing" className="block scroll-mt-20" aria-hidden />
         <Pricing />
         <Faq />
+        <span id="contact" className="block scroll-mt-20" aria-hidden />
         <FinalCta />
       </main>
       <Footer />
