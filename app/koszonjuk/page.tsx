@@ -41,7 +41,7 @@ export default function ThankYouPage() {
               </span>
               <span className="inline-flex items-center gap-2">
                 <Phone size={15} className="text-[color:var(--primary)]" />
-                +36 30 993 2454
+                06 30 269 7632
               </span>
             </div>
 

@@ -40,7 +40,7 @@ export default function PrivacyPage() {
               <p><strong className="text-[color:var(--heading)]">Név:</strong> Nagy Norbert József E.V.</p>
               <p><strong className="text-[color:var(--heading)]">Adószám:</strong> 57631336-1-36</p>
               <p><strong className="text-[color:var(--heading)]">E-mail:</strong> hello@nexuscode.hu</p>
-              <p><strong className="text-[color:var(--heading)]">Telefon:</strong> +36 30 993 2454</p>
+              <p><strong className="text-[color:var(--heading)]">Telefon:</strong> 06 30 269 7632</p>
               <p><strong className="text-[color:var(--heading)]">Weboldal:</strong> nexuscode.hu</p>
             </div>
           </section>
@@ -166,7 +166,7 @@ export default function PrivacyPage() {
                   hello@nexuscode.hu
                 </a>
               </p>
-              <p><strong className="text-[color:var(--heading)]">Telefon:</strong> +36 30 993 2454</p>
+              <p><strong className="text-[color:var(--heading)]">Telefon:</strong> 06 30 269 7632</p>
               <p><strong className="text-[color:var(--heading)]">Elérhetőség:</strong> minden nap 8–22 óra között</p>
             </div>
           </section>

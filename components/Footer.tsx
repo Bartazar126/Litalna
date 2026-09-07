@@ -38,8 +38,8 @@ export default function Footer() {
             <a href="mailto:hello@nexuscode.hu" className="block text-white/50 hover:text-white transition-colors">
               hello@nexuscode.hu
             </a>
-            <a href="tel:+36309932454" className="block text-white/50 hover:text-white transition-colors">
-              +36 30 993 2454
+            <a href="tel:+36302697632" className="block text-white/50 hover:text-white transition-colors">
+              06 30 269 7632
             </a>
           </div>
         </div>

@@ -134,7 +134,7 @@ export async function POST(request: Request) {
         </tr>
       </table>
       <div style="background:#eef2ff;border-radius:8px;padding:13px 17px;font-size:13.5px;line-height:1.6;color:#3730a3;">
-        Ha sürgős, hívj minket bátran: <a href="tel:+36309932454" style="color:#4f46e5;font-weight:700;text-decoration:none;">+36 30 993 2454</a><br/>
+        Ha sürgős, hívj minket bátran: <a href="tel:+36302697632" style="color:#4f46e5;font-weight:700;text-decoration:none;">06 30 269 7632</a><br/>
         Minden nap 8 és 22 óra között elérsz.
       </div>
       <p style="margin:20px 0 0;font-size:14.5px;color:#3a3f58;">Addig is szép napot!</p>

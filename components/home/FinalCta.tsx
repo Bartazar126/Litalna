@@ -91,13 +91,13 @@ export default function FinalCta() {
                 <span className="text-[15px]">hello@nexuscode.hu</span>
               </a>
               <a
-                href="tel:+36309932454"
+                href="tel:+36302697632"
                 className="flex items-center gap-3.5 text-white/70 hover:text-white transition-colors group w-fit"
               >
                 <span className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/15 group-hover:border-white/30 transition-colors">
                   <Phone size={16} />
                 </span>
-                <span className="text-[15px]">+36 30 993 2454</span>
+                <span className="text-[15px]">06 30 269 7632</span>
               </a>
               <p className="text-sm text-white/40 pl-[54px]">Minden nap, 8–22 óráig.</p>
             </div>

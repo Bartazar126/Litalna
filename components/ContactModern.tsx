@@ -170,7 +170,7 @@ export default function ContactModern() {
               value={formData.phone}
               onChange={handleChange}
               className="w-full px-4 py-3 glass border border-blue-500/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-white placeholder:text-gray-500"
-              placeholder="+36 30 993 2454"
+              placeholder="06 30 269 7632"
             />
           </div>
 

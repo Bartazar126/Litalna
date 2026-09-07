@@ -32,7 +32,7 @@ export default function TermsPage() {
               <p><strong className={strong}>Név:</strong> Nagy Norbert József E.V. (Nexuscode)</p>
               <p><strong className={strong}>Adószám:</strong> 57631336-1-36</p>
               <p><strong className={strong}>E-mail:</strong> hello@nexuscode.hu</p>
-              <p><strong className={strong}>Telefon:</strong> +36 30 993 2454</p>
+              <p><strong className={strong}>Telefon:</strong> 06 30 269 7632</p>
               <p><strong className={strong}>Weboldal:</strong> nexuscode.hu</p>
               <p><strong className={strong}>Elérhetőség:</strong> minden nap 8–22 óra között</p>
             </div>
@@ -181,7 +181,7 @@ export default function TermsPage() {
                   hello@nexuscode.hu
                 </a>
               </p>
-              <p><strong className={strong}>Telefon:</strong> +36 30 993 2454</p>
+              <p><strong className={strong}>Telefon:</strong> 06 30 269 7632</p>
               <p><strong className={strong}>Elérhetőség:</strong> minden nap 8–22 óra között</p>
             </div>
           </section>

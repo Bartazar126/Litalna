@@ -62,9 +62,9 @@ export default function Header({ current = 'Főoldal' }: { current?: string }) {
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+36309932454"
+              href="tel:+36302697632"
               className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full text-white/85 hover:text-white hover:bg-white/10 transition-colors"
-              aria-label="Hívás: +36 30 993 2454"
+              aria-label="Hívás: 06 30 269 7632"
             >
               <Phone size={19} />
             </a>

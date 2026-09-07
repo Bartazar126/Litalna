@@ -210,8 +210,8 @@ export default function AjanlatPage() {
               <p className="text-[13.5px] text-[color:var(--muted)] leading-relaxed mb-4">
                 Hívj bátran, vagy írj emailt, minden nap 8 és 22 óra között elérsz minket.
               </p>
-              <a href="tel:+36309932454" className="block text-[15px] font-semibold text-[color:var(--primary)] hover:underline underline-offset-4">
-                +36 30 993 2454
+              <a href="tel:+36302697632" className="block text-[15px] font-semibold text-[color:var(--primary)] hover:underline underline-offset-4">
+                06 30 269 7632
               </a>
               <a href="mailto:hello@nexuscode.hu" className="block text-[15px] font-semibold text-[color:var(--primary)] hover:underline underline-offset-4 mt-1">
                 hello@nexuscode.hu

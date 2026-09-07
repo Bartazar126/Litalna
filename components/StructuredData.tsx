@@ -13,7 +13,7 @@ export default function StructuredData() {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+36-30-993-2454',
+      telephone: '+36-30-269-7632',
       contactType: 'customer service',
       email: 'hello@nexuscode.hu',
       availableLanguage: ['Hungarian'],
