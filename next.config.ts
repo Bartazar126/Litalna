@@ -30,6 +30,16 @@ const nextConfig: NextConfig = {
     scrollRestoration: true,
   },
   
+  /* A hirdetesek megjelenitett utvonala (display path) a Google Ads-ben
+     nem valodi URL, de ha valaki begepeli vagy kimasolja, ne 404 fogadja. */
+  async redirects() {
+    return [
+      { source: '/weboldal/ajanlatkeres', destination: '/ajanlat', permanent: true },
+      { source: '/weboldal/keszites', destination: '/', permanent: true },
+      { source: '/ajanlatkeres', destination: '/ajanlat', permanent: true },
+    ];
+  },
+
   // Headers for caching and performance
   async headers() {
     return [
