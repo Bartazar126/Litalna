@@ -1,42 +1,43 @@
 'use client';
 
 import { useEffect } from 'react';
+import { trackLead, newLeadId, loadGtagNow, recentLeadFired, LEAD_VALUE_HUF, ADS_LEAD_SEND_TO } from '@/lib/tracking';
 
-/* Google Ads konverzió jelzése a köszönőoldalon. A gtag lazyOnload-dal
-   töltődik, ezért türelmesen újrapróbáljuk; sessionStorage-őrrel védve,
-   hogy egy frissítés ne számoljon duplán. */
+/* Biztonsági háló a köszönőoldalon.
+ *
+ * A konverzió elsődlegesen már az űrlap elküldésekor elmegy (ott még
+ * megvan az email a hasheléshez, és a látogató biztosan a lapon van).
+ * Itt csak akkor tüzelünk, ha ez valamiért nem történt meg, például mert
+ * valaki közvetlen linkkel érkezett a /koszonjuk oldalra.
+ *
+ * A leadId-vel dedupláljuk: ha az űrlap már elküldte, ez nem küld újra.
+ */
 
-export const ADS_CONVERSION_ID = 'AW-18422187691/yVHaCOHhxewcEKuNsdBE';
+export { ADS_LEAD_SEND_TO as ADS_CONVERSION_ID };
 
 export default function AdsConversion() {
   useEffect(() => {
+    // A könyvtárat itt nem várakoztatjuk: azonnal kell.
+    loadGtagNow();
+
+    let pending: { id: string; email?: string; phone?: string; name?: string } | null = null;
     try {
-      if (sessionStorage.getItem('adsConvFired')) return;
+      const raw = sessionStorage.getItem('ncx_pending_lead');
+      if (raw) pending = JSON.parse(raw);
     } catch {}
 
-    let tries = 0;
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (pending?.id) {
+      // Az űrlap már tüzelt ezzel az id-vel: a trackLead dedupál, nem megy ki újra.
+      trackLead({ leadId: pending.id, email: pending.email, phone: pending.phone, name: pending.name });
+      return;
+    }
 
-    const fire = () => {
-      const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-      if (typeof g === 'function') {
-        g('event', 'conversion', {
-          send_to: ADS_CONVERSION_ID,
-          value: 1.0,
-          currency: 'HUF',
-        });
-        try {
-          sessionStorage.setItem('adsConvFired', '1');
-        } catch {}
-      } else if (tries++ < 40) {
-        timer = setTimeout(fire, 500);
-      }
-    };
-    fire();
+    // Nincs elmentett lead. Ha viszont pár perce már ment konverzió
+    // (tiltott sessionStorage mellett is látjuk), ne számoljunk másodszor.
+    if (recentLeadFired()) return;
 
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
+    // Közvetlen látogatás a köszönőoldalra: inkább legyen meg a konverzió.
+    trackLead({ leadId: newLeadId(), value: LEAD_VALUE_HUF });
   }, []);
 
   return null;

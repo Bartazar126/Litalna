@@ -7,9 +7,11 @@ import { X, Cookie } from 'lucide-react';
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
-  // Az első interakcióra (vagy 6 mp után) jelenik meg: így nem a banner
-  // lesz az oldal LCP-eleme, ami rontaná a PageSpeedet. A mérés addig
-  // Consent Mode alatt úgyis tiltva fut.
+  // A sáv az LCP után, de gyorsan megjelenik (2 mp, vagy az első
+  // interakcióra). Korábban 6 mp-et várt: addigra a hirdetésből érkező
+  // látogató már az űrlapon volt, sokszor el is küldte, vagyis a Consent
+  // Mode végig 'denied' maradt, és az Ads-konverziót semmi nem kötötte a
+  // hirdetéskattintáshoz. A 2 mp a tipikus LCP-n (~1,5 mp) már túl van.
   useEffect(() => {
     let consent: string | null = null;
     try {
@@ -24,7 +26,7 @@ export default function CookieConsent() {
       setShowBanner(true);
       cleanup();
     };
-    const t = setTimeout(show, 6000);
+    const t = setTimeout(show, 2000);
     const opts = { passive: true, once: true } as AddEventListenerOptions;
     const events: (keyof WindowEventMap)[] = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
     const cleanup = () => {

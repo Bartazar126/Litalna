@@ -33,6 +33,18 @@ const faqs = [
   },
 ];
 
+/* A Google akkor mutathat kiemelt kérdés-válasz találatot, ha ugyanaz a
+   szöveg az oldalon is látszik, ezért ugyanebből a tömbből generáljuk. */
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -64,6 +76,10 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function Faq() {
   return (
     <section id="gyik" className="scroll-mt-20 py-16 md:py-24 bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <Reveal>
           <h2 className="section-title">Kérdések, amiket mindenki feltesz</h2>

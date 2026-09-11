@@ -5,6 +5,7 @@ import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
   title: 'Általános Szerződési Feltételek (ÁSZF) | Nexuscode',
+  alternates: { canonical: '/terms' },
   description: 'Általános Szerződési Feltételek weboldal fejlesztési szolgáltatásainkhoz.',
   robots: {
     index: true,

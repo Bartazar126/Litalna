@@ -5,6 +5,7 @@ import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
   title: 'Adatvédelmi Nyilatkozat | Nexuscode',
+  alternates: { canonical: '/privacy' },
   description: 'Adatvédelmi szabályzat és cookie-k használata. GDPR kompatibilis adatkezelés.',
   robots: {
     index: true,

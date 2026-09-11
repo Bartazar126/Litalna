@@ -2,9 +2,17 @@ export default function StructuredData() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://www.nexuscode.hu/#organization',
     name: 'Nexuscode',
-    url: 'https://nexuscode.hu',
-    logo: 'https://nexuscode.hu/logo-n.png',
+    legalName: 'Nagy Norbert József E.V.',
+    taxID: '57631336-1-36',
+    url: 'https://www.nexuscode.hu',
+    logo: 'https://www.nexuscode.hu/logo-n.png',
+    image: 'https://www.nexuscode.hu/logo-full.png',
+    email: 'hello@nexuscode.hu',
+    telephone: '+36-30-269-7632',
+    areaServed: { '@type': 'Country', name: 'Magyarország' },
+    knowsLanguage: ['hu'],
     description:
       'A Nexuscode digitális technológiai stúdió. Weboldal, webáruház, egyedi rendszer és marketing, egy kézben, fix áron.',
     founder: {
@@ -30,13 +38,11 @@ export default function StructuredData() {
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Web Development',
+    '@id': 'https://www.nexuscode.hu/#service',
+    serviceType: 'Weboldal készítés, webfejlesztés',
     name: 'Honlapkészítés és Webfejlesztés',
     description: 'Professzionális weboldal fejlesztés 1-2 hét alatt. Next.js, React, mobilbarát, SEO optimalizált.',
-    provider: {
-      '@type': 'Organization',
-      name: 'Nexuscode',
-    },
+    provider: { '@id': 'https://www.nexuscode.hu/#organization' },
     areaServed: {
       '@type': 'Country',
       name: 'Hungary',

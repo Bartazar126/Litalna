@@ -17,12 +17,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} | Nexuscode Blog`,
     description: post.excerpt,
+    // Enélkül a gyökér-layout főoldalra mutató kanonikusa érvényesült
+    // minden cikkre, vagyis a Google mindegyiket a főoldal másolatának
+    // látta, és egyik sem kerülhetett be a találatokba.
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
+      url: `/blog/${slug}`,
       publishedTime: post.date,
       authors: ['Nexuscode'],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
     },
   };
 }
@@ -55,8 +68,45 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     );
   }
 
+  const SITE = 'https://www.nexuscode.hu';
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: 'hu-HU',
+    keywords: post.tags.join(', '),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}/blog/${slug}` },
+    author: { '@type': 'Organization', name: 'Nexuscode', url: SITE },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nexuscode',
+      logo: { '@type': 'ImageObject', url: `${SITE}/logo-n.png` },
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Főoldal', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE}/blog/${slug}` },
+    ],
+  };
+
   return (
     <div className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header current="Blog" />
 
       <article className="max-w-[760px] mx-auto px-5 sm:px-8 pt-[120px] pb-16 sm:pb-24">

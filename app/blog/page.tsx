@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Blog | Nexuscode - Webfejlesztés és SEO tippek',
   description:
     'Közérthető cikkek weboldalról, Google-találatokról és online marketingről. Hogy a weboldalad ne csak szép legyen, hanem ügyfeleket is hozzon.',
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 export default function BlogIndex() {

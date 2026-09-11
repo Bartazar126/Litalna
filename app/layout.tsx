@@ -21,7 +21,10 @@ const spaceGrotesk = Space_Grotesk({
   preload: true,
 });
 
+export const SITE_URL = 'https://www.nexuscode.hu';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Nexuscode | Modern Weboldal Fejlesztés 80.000 Ft-tól',
   description: 'Professzionális weboldal fejlesztés 1-2 hét alatt, 80.000 Ft-tól. Next.js, React, SEO optimalizált, mobilbarát. Gyors válaszidő. Webshop, landing page, vállalati oldal készítés.',
   keywords: 'honlapkészítés, weboldal készítés, weboldal fejlesztés, egyedi weboldal, next.js fejlesztés, react fejlesztés, seo optimalizálás, gyors weboldal, olcsó honlap, prémium webdesign, nexuscode',
@@ -38,11 +41,11 @@ export const metadata: Metadata = {
     description: 'Gyors, professzionális weboldal fejlesztés. Next.js, React, mobilbarát, SEO optimalizált.',
     type: 'website',
     locale: 'hu_HU',
-    url: 'https://nexuscode.hu',
+    url: SITE_URL,
     siteName: 'Nexuscode',
     images: [
       {
-        url: 'https://nexuscode.hu/opengraph-image',
+        url: 'https://www.nexuscode.hu/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Nexuscode - Weboldal Fejlesztés',
@@ -53,10 +56,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Nexuscode | Modern Weboldal Fejlesztés',
     description: 'Gyors, professzionális weboldal fejlesztés.',
-    images: ['https://nexuscode.hu/opengraph-image'],
+    images: ['https://www.nexuscode.hu/opengraph-image'],
   },
   alternates: {
-    canonical: 'https://nexuscode.hu',
+    canonical: '/',
   },
   robots: {
     index: true,
@@ -101,7 +104,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
-        <link rel="canonical" href="https://nexuscode.hu" />
         <link rel="manifest" href="/manifest.json" />
         <StructuredData />
       </head>
@@ -145,7 +147,7 @@ export default function RootLayout({
 
               gtag('js', new Date());
               gtag('config', 'G-DK6GNH27QV', { 'send_page_view': false });
-              gtag('config', 'AW-18422187691');
+              gtag('config', 'AW-18422187691', { 'allow_enhanced_conversions': true });
               setTimeout(function() {
                 gtag('event', 'page_view', { 'send_to': 'G-DK6GNH27QV' });
               }, 3500);

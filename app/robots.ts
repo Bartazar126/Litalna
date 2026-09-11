@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/', '/koszonjuk'], // Köszönőoldalt se indexelje
     },
-    sitemap: 'https://nexuscode.hu/sitemap.xml',
+    sitemap: 'https://www.nexuscode.hu/sitemap.xml',
+    host: 'https://www.nexuscode.hu',
   };
 }

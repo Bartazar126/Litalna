@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HashAnchorFix from '@/components/HashAnchorFix';
 import Hero from '@/components/home/Hero';
+import MobileCtaBar from '@/components/MobileCtaBar';
 
 // A hajtás alatti szekciók késleltetve töltődnek (PageSpeed)
 const Solutions = dynamic(() => import('@/components/home/Solutions'), { loading: () => null });
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
       'Weboldal, webáruház, egyedi rendszer és marketing, egy kézben. A jövőt építjük.',
   },
   alternates: {
-    canonical: 'https://nexuscode.hu',
+    canonical: '/',
   },
 };
 
@@ -53,6 +54,7 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
+      <MobileCtaBar />
     </>
   );
 }

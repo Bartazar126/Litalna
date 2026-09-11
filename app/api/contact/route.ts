@@ -2,6 +2,24 @@ import { NextResponse, after } from 'next/server';
 import nodemailer from 'nodemailer';
 
 const SITE = 'https://www.nexuscode.hu';
+
+/* A hirdetésből érkező kattintás adatai. A gclid azért kell az emailbe,
+   mert ezzel tudsz offline konverziót visszatölteni a Google Ads-be
+   (Tools > Conversions > Uploads), amikor egy leadből tényleg ügyfél
+   lesz. Így a Google a valódi üzletre optimalizál, nem az űrlapokra. */
+type ClickData = {
+  gclid?: string;
+  gbraid?: string;
+  wbraid?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  landing?: string;
+  referrer?: string;
+  ts?: number;
+};
 const BRAND_GRAD = 'linear-gradient(135deg, #2563eb, #7c3aed)';
 
 /* Közös keret: fehér kártya, animált logó, gradiens hangsúlycsík */
@@ -41,7 +59,14 @@ const esc = (s: unknown) =>
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const { name, email, phone, message, company, website, projectType, budget, deadline, features, source, description } = data;
+    const { name, email, phone, message, company, website, projectType, budget, deadline, features, source, description, leadId, websiteUrl } = data;
+    const click: ClickData = data.click || {};
+
+    // Méz: ha kitöltötték, robot volt. 200-zal válaszolunk, hogy ne
+    // próbálkozzon újra, de emailt nem küldünk.
+    if (websiteUrl) {
+      return NextResponse.json({ message: 'Sikeres küldés' }, { status: 200 });
+    }
 
     // Validate essential input
     if (!name || !email) {
@@ -89,6 +114,33 @@ export async function POST(request: Request) {
       Array.isArray(features) && features.length > 0 ? row('Kért funkciók', features.map(esc).join(', ')) : '',
     ].join('');
 
+    /* Marketing-blokk: honnan jött ez a lead. */
+    const adSource = click.gclid || click.gbraid || click.wbraid
+      ? 'Google Ads (fizetett kattintás)'
+      : click.utm_source
+        ? esc(click.utm_source)
+        : 'Organikus / közvetlen';
+
+    const marketingRows = [
+      row('Csatorna', adSource),
+      click.utm_campaign ? row('Kampány', esc(click.utm_campaign)) : '',
+      click.utm_term ? row('Kulcsszó', esc(click.utm_term)) : '',
+      click.utm_content ? row('Hirdetés', esc(click.utm_content)) : '',
+      click.landing ? row('Belépő oldal', esc(click.landing)) : '',
+      click.referrer ? row('Hivatkozó', esc(click.referrer)) : '',
+      leadId ? row('Lead azonosító', esc(leadId)) : '',
+      click.gclid ? row('GCLID', `<code style="font-size:11.5px;word-break:break-all;">${esc(click.gclid)}</code>`) : '',
+      click.gbraid ? row('GBRAID', `<code style="font-size:11.5px;word-break:break-all;">${esc(click.gbraid)}</code>`) : '',
+      click.wbraid ? row('WBRAID', `<code style="font-size:11.5px;word-break:break-all;">${esc(click.wbraid)}</code>`) : '',
+      click.ts ? row('Kattintás ideje', new Date(click.ts).toLocaleString('hu-HU')) : '',
+    ].join('');
+
+    const marketingBlock = `
+      <div style="margin-top:22px;border-top:1px solid #eef0f7;padding-top:18px;">
+        <div style="font-size:12px;font-weight:600;color:#6d7390;margin-bottom:7px;">HONNAN JÖTT</div>
+        <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">${marketingRows}</table>
+      </div>`;
+
     const adminInner = `
       <span style="display:inline-block;background:${isQuoteRequest ? '#eef2ff' : '#f0fdf4'};color:${isQuoteRequest ? '#4f46e5' : '#16a34a'};font-size:11px;font-weight:700;letter-spacing:0.06em;padding:5px 12px;border-radius:999px;">
         ${isQuoteRequest ? 'AJÁNLATKÉRÉS' : 'KAPCSOLATFELVÉTEL'}
@@ -99,6 +151,7 @@ export async function POST(request: Request) {
         <div style="font-size:12px;font-weight:600;color:#6d7390;margin-bottom:7px;">ÜZENET</div>
         <div style="background:#f7f8fc;border:1px solid #eef0f7;border-left:3px solid #4f46e5;border-radius:8px;padding:15px 17px;font-size:14px;line-height:1.65;color:#3a3f58;white-space:pre-wrap;">${esc(message || description || 'Nem írt üzenetet.')}</div>
       </div>
+      ${marketingBlock}
       <div style="text-align:center;margin-top:26px;">
         <a href="mailto:${esc(email)}" style="display:inline-block;background:#4f46e5;background-image:${BRAND_GRAD};color:#ffffff;font-size:14px;font-weight:600;padding:12px 30px;border-radius:999px;text-decoration:none;">Válasz ${esc(String(name).split(' ')[0])} részére</a>
       </div>`;

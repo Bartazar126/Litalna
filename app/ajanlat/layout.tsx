@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Kérj ingyenes árajánlatot. Gyors válaszidő, átlátható árazás, gyors átfutás.',
   },
   alternates: {
-    canonical: 'https://nexuscode.hu/ajanlat',
+    canonical: '/ajanlat',
   },
 };
 

@@ -1,15 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, AlertCircle, Mail, Phone } from 'lucide-react';
 import Reveal from './Reveal';
-import { ADS_CONVERSION_ID } from '@/components/AdsConversion';
+import { captureClickIds, getClickData, newLeadId, trackLead, trackPhoneClick } from '@/lib/tracking';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
 export default function FinalCta() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [botField, setBotField] = useState(''); // méz a spamrobotoknak
   const [status, setStatus] = useState<Status>('idle');
+
+  // A hirdetésből érkező gclid eltárolása, hogy az űrlap is lássa
+  useEffect(() => {
+    captureClickIds();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,21 +23,22 @@ export default function FinalCta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (botField) return; // spamrobot akadt fenn a mézen
     setStatus('sending');
+    const leadId = newLeadId();
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, leadId, click: getClickData() }),
       });
       setStatus(res.ok ? 'success' : 'error');
       if (res.ok) {
+        /* Konverzió az email és a telefonszám átadásával (Enhanced
+           Conversions), mielőtt kiürítjük az űrlapot. Itt nincs
+           átirányítás köszönőoldalra, ezért ez az egyetlen jelzés. */
+        trackLead({ leadId, email: formData.email, phone: formData.phone, name: formData.name });
         setFormData({ name: '', email: '', phone: '', message: '' });
-        // Google Ads konverzió: itt nincs átirányítás köszönőoldalra
-        const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-        if (typeof g === 'function') {
-          g('event', 'conversion', { send_to: ADS_CONVERSION_ID, value: 1.0, currency: 'HUF' });
-        }
       }
     } catch {
       setStatus('error');
@@ -92,6 +99,7 @@ export default function FinalCta() {
               </a>
               <a
                 href="tel:+36302697632"
+                onClick={() => trackPhoneClick('fooldal-kapcsolat')}
                 className="flex items-center gap-3.5 text-white/70 hover:text-white transition-colors group w-fit"
               >
                 <span className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/15 group-hover:border-white/30 transition-colors">
@@ -117,6 +125,19 @@ export default function FinalCta() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="card p-6 sm:p-8 space-y-5">
+                {/* Méz a robotoknak */}
+                <div className="absolute w-px h-px -m-px overflow-hidden" aria-hidden>
+                  <label htmlFor="cta-website-url">Ne töltsd ki</label>
+                  <input
+                    id="cta-website-url"
+                    type="text"
+                    name="websiteUrl"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={botField}
+                    onChange={(e) => setBotField(e.target.value)}
+                  />
+                </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="cta-name" className="block text-sm font-medium text-[color:var(--foreground)] mb-2">
