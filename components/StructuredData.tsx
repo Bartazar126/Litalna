@@ -1,7 +1,12 @@
 export default function StructuredData() {
+  /* ProfessionalService a sima Organization helyett: ez a LocalBusiness
+     egyik altipusa, es igy a Google ossze tudja kotni az oldalt a Google
+     Cegprofillal (Karcag, Kisujszallasi ut 44). A telefonszam ugyanaz,
+     mint a Cegprofilban es a hirdetesekben: a NAP-egyezes helyi
+     kereseseknel bizalmi jelzes. */
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'ProfessionalService',
     '@id': 'https://www.nexuscode.hu/#organization',
     name: 'Nexuscode',
     legalName: 'Nagy Norbert József E.V.',
@@ -13,6 +18,20 @@ export default function StructuredData() {
     telephone: '+36-30-269-7632',
     areaServed: { '@type': 'Country', name: 'Magyarország' },
     knowsLanguage: ['hu'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Kisújszállási út 44',
+      addressLocality: 'Karcag',
+      postalCode: '5300',
+      addressRegion: 'Jász-Nagykun-Szolnok',
+      addressCountry: 'HU',
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '08:00',
+      closes: '22:00',
+    },
     description:
       'A Nexuscode digitális technológiai stúdió. Weboldal, webáruház, egyedi rendszer és marketing, egy kézben, fix áron.',
     founder: {

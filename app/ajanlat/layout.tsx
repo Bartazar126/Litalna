@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Ingyenes Ajánlatkérés | Weboldal Készítés 80.000 Ft-tól',
-  description: 'Kérj ingyenes, kötelezettség nélküli árajánlatot weboldalad elkészítésére. Gyors válaszidő, átlátható árazás, 1-2 hét átfutás. Landing page, webshop, vállalati oldal.',
+  description: 'Kérj ingyenes, kötelezettség nélküli árajánlatot: fix ár írásban, 24 órán belül. Weboldal, webáruház, landing page, egyedi fejlesztés.',
   openGraph: {
     title: 'Ingyenes Ajánlatkérés | Weboldal Készítés',
     description: 'Kérj ingyenes árajánlatot. Gyors válaszidő, átlátható árazás, gyors átfutás.',
