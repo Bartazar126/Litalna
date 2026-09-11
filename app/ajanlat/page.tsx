@@ -105,11 +105,18 @@ export default function AjanlatPage() {
           email: formData.email,
           phone: formData.phone,
           name: formData.name,
+          budget: formData.budget,
         });
         try {
           sessionStorage.setItem(
             'ncx_pending_lead',
-            JSON.stringify({ id: leadId, email: formData.email, phone: formData.phone, name: formData.name })
+            JSON.stringify({
+              id: leadId,
+              email: formData.email,
+              phone: formData.phone,
+              name: formData.name,
+              budget: formData.budget,
+            })
           );
         } catch {}
         router.push('/koszonjuk');

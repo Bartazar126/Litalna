@@ -14,10 +14,33 @@ export const ADS_ID = 'AW-18422187691';
 export const ADS_LEAD_LABEL = 'yVHaCOHhxewcEKuNsdBE';
 export const ADS_LEAD_SEND_TO = `${ADS_ID}/${ADS_LEAD_LABEL}`;
 
-/* Egy ajánlatkérés becsült üzleti értéke forintban. A Google ezzel tud
-   majd érték alapján licitálni (Maximize conversion value / tROAS).
-   Számítás: átlagos projektméret × lead→ügyfél zárási arány. */
+/* Egy ajánlatkérés becsült üzleti értéke forintban, amikor nem tudjuk,
+   mekkora projektről van szó (pl. a főoldali rövid űrlap). */
 export const LEAD_VALUE_HUF = 20000;
+
+/* A licitáláshoz csak az ARÁNYOK számítanak, az abszolút összegek nem:
+   ha a valós zárási arány 5% vagy 20%, attól minden érték ugyanazzal a
+   szorzóval mozdul, és a Google viselkedése változatlan. Ezért a
+   számok az árlista sávközepeiből jönnek, egységes 10%-os feltételezett
+   zárással. Ha később kiderül a tényleges arány, elég ezt a szorzót
+   állítani, a sávok egymáshoz képesti súlya jó marad. */
+const CLOSE_RATE = 0.1;
+
+const BUDGET_MIDPOINT_HUF: Record<string, number> = {
+  '80 – 150 ezer Ft': 115000,
+  '150 – 300 ezer Ft': 225000,
+  '300 – 500 ezer Ft': 400000,
+  '500 ezer Ft felett': 700000,
+  'Még nem tudom, ezért kérek ajánlatot': 150000,
+};
+
+/** Az űrlapon választott keretsávból becsült lead-érték. */
+export function leadValueFromBudget(budget?: string) {
+  if (!budget) return LEAD_VALUE_HUF;
+  const midpoint = BUDGET_MIDPOINT_HUF[budget.trim()];
+  if (!midpoint) return LEAD_VALUE_HUF;
+  return Math.round((midpoint * CLOSE_RATE) / 1000) * 1000;
+}
 
 const CLICK_STORE_KEY = 'ncx_click';
 const CLICK_TTL_MS = 90 * 24 * 60 * 60 * 1000; // 90 nap, mint az Ads attribúciós ablak
@@ -158,6 +181,8 @@ export type LeadPayload = {
   email?: string;
   phone?: string;
   name?: string;
+  /** Az űrlapon választott keretsáv; ebből számoljuk a konverzió értékét. */
+  budget?: string;
   value?: number;
 };
 
@@ -167,7 +192,8 @@ export type LeadPayload = {
  * a böngészőben hasheli, és cookie nélkül (elutasított süti esetén is)
  * hozzá tudja rendelni a leadet a hirdetéskattintáshoz.
  */
-export function trackLead({ leadId, email, phone, name, value = LEAD_VALUE_HUF }: LeadPayload) {
+export function trackLead({ leadId, email, phone, name, budget, value }: LeadPayload) {
+  const leadValue = value ?? leadValueFromBudget(budget);
   if (typeof window === 'undefined') return;
 
   if (firedInThisPage === leadId) return; // már elment ezen a lapon
@@ -202,14 +228,14 @@ export function trackLead({ leadId, email, phone, name, value = LEAD_VALUE_HUF }
 
   g('event', 'conversion', {
     send_to: ADS_LEAD_SEND_TO,
-    value,
+    value: leadValue,
     currency: 'HUF',
     transaction_id: leadId,
   });
 
   g('event', 'generate_lead', {
     send_to: GA4_ID,
-    value,
+    value: leadValue,
     currency: 'HUF',
     transaction_id: leadId,
     lead_source: click.utm_source || (click.gclid ? 'google_ads' : 'organic'),

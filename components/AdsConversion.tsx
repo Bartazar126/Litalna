@@ -20,7 +20,7 @@ export default function AdsConversion() {
     // A könyvtárat itt nem várakoztatjuk: azonnal kell.
     loadGtagNow();
 
-    let pending: { id: string; email?: string; phone?: string; name?: string } | null = null;
+    let pending: { id: string; email?: string; phone?: string; name?: string; budget?: string } | null = null;
     try {
       const raw = sessionStorage.getItem('ncx_pending_lead');
       if (raw) pending = JSON.parse(raw);
@@ -28,7 +28,13 @@ export default function AdsConversion() {
 
     if (pending?.id) {
       // Az űrlap már tüzelt ezzel az id-vel: a trackLead dedupál, nem megy ki újra.
-      trackLead({ leadId: pending.id, email: pending.email, phone: pending.phone, name: pending.name });
+      trackLead({
+        leadId: pending.id,
+        email: pending.email,
+        phone: pending.phone,
+        name: pending.name,
+        budget: pending.budget,
+      });
       return;
     }
 
