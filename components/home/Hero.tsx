@@ -15,11 +15,13 @@ export default function Hero() {
             <p className="rise text-[11px] sm:text-[12px] font-semibold tracking-[0.3em] uppercase text-white/50 mb-5">
               Nexuscode <span className="text-[#b3a6ff]">·</span> Digital Technology Studio
             </p>
-            {/* Az LCP-elem: nem animáljuk, hogy azonnal fessen */}
+            {/* Az LCP-elem: nem animáljuk, hogy azonnal fessen.
+                A címsor a fő célkulcsszót is tartalmazza ("weboldal"):
+                a title után ez a legerősebb jelzés a Google felé. */}
             <h1 className="font-display text-[2.4rem] leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem] font-semibold text-white mb-5">
-              Az ügyfeleid már online vannak.
+              Weboldal, ami ügyfeleket hoz.
               <br />
-              <span className="text-[#c7bfff]">Legyél ott te is.</span>
+              <span className="text-[#c7bfff]">Nem csak szép lesz — dolgozni fog.</span>
             </h1>
             <p className="rise rise-1 text-[19px] sm:text-[22px] text-white/90 font-light leading-snug max-w-[26ch] mx-auto lg:mx-0 mb-4">
               Weboldal, szoftver és marketing, egy kézben.

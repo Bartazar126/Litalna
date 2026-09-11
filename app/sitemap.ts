@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/webaruhaz-keszites`,
+      lastModified: STATIC_LAST_MODIFIED,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/blog`,
       lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'weekly' as const,

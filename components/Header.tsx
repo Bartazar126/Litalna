@@ -8,6 +8,7 @@ const navItems = [
   { name: 'Főoldal', href: '/' },
   { name: 'Munkáink', href: '/#munkaink' },
   { name: 'Szolgáltatások', href: '/#szolgaltatasok' },
+  { name: 'Webáruház', href: '/webaruhaz-keszites' },
   { name: 'Árak', href: '/#arak' },
   { name: 'Blog', href: '/blog' },
   { name: 'Kapcsolat', href: '/#kapcsolat' },
