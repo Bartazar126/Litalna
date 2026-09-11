@@ -1,11 +1,22 @@
+import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 import FlowWaves from './FlowWaves';
 import Reveal from './Reveal';
 
 /* Munkáink: böngésző-keretes kártyák valódi, élő oldalakkal.
-   Hoverre a képernyőkép lassan végiggördül a kereten belül. */
+   Hoverre a képernyőkép lassan végiggördül a kereten belül.
+   A VYRA saját koncepció, nem ügyfélmunka: ezért külön jelölést kap,
+   és a termékrenderrel jelenik meg, nem képernyőképpel. */
 
-const works = [
+type Work = {
+  url: string;
+  domain: string;
+  label: string;
+  img?: string;
+  concept?: boolean;
+};
+
+const works: Work[] = [
   {
     url: 'https://kickoffcamps.hu/',
     img: '/refs/kickoffcamps.webp',
@@ -17,6 +28,12 @@ const works = [
     img: '/refs/qualityroad.webp',
     domain: 'qualityroadkft.hu',
     label: 'Útépítő cég, ajánlatkérésre hangolva',
+  },
+  {
+    url: 'https://vyra.nexuscode.hu/',
+    domain: 'vyra.nexuscode.hu',
+    label: '3D termékbemutató, Blender + Three.js',
+    concept: true,
   },
 ];
 
@@ -33,7 +50,7 @@ export default function Works() {
               </span>
             </h2>
             <p className="text-[14.5px] text-[color:var(--muted)] max-w-[24rem] leading-relaxed md:text-right">
-              Mindkét oldal ma is üzemel. Vidd az egeret a képekre, és
+              Mindegyik oldal ma is üzemel. Vidd az egeret a képekre, és
               kattints: élőben nyílnak meg.
             </p>
           </div>
@@ -64,17 +81,34 @@ export default function Works() {
                   />
                 </div>
 
-                {/* Képernyőkép: hoverre végiggördül */}
-                <div className="h-[240px] sm:h-[300px] overflow-hidden bg-[#eef0f8]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={w.img}
-                    alt={`${w.domain} képernyőkép`}
-                    loading="lazy"
-                    className="w-full h-full object-cover [object-position:50%_0%] group-hover:[object-position:50%_100%]"
-                    style={{ transition: 'object-position 4s ease-in-out' }}
-                  />
-                </div>
+                {/* Kép: ügyfélmunkánál képernyőkép, koncepciónál termékrender */}
+                {w.concept ? (
+                  <div className="relative h-[240px] sm:h-[300px] overflow-hidden bg-[#f0489b] flex items-center justify-center">
+                    <Image
+                      src="/refs/vyra-can.png"
+                      alt="VYRA Yuzu Pink doboz, 3D renderelt termékkép"
+                      width={900}
+                      height={1100}
+                      sizes="(max-width: 640px) 90vw, 420px"
+                      loading="lazy"
+                      className="h-[88%] w-auto object-contain drop-shadow-[0_18px_40px_rgba(120,10,60,0.45)] transition-transform duration-500 group-hover:scale-[1.06]"
+                    />
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-[10.5px] font-semibold tracking-wide text-[#b8256b]">
+                      Saját koncepció
+                    </span>
+                  </div>
+                ) : (
+                  <div className="h-[240px] sm:h-[300px] overflow-hidden bg-[#eef0f8]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={w.img}
+                      alt={`${w.domain} képernyőkép`}
+                      loading="lazy"
+                      className="w-full h-full object-cover [object-position:50%_0%] group-hover:[object-position:50%_100%]"
+                      style={{ transition: 'object-position 4s ease-in-out' }}
+                    />
+                  </div>
+                )}
 
                 {/* Lábléc */}
                 <div className="flex items-center justify-between gap-3 px-5 py-4 border-t border-[color:var(--hairline)]">
