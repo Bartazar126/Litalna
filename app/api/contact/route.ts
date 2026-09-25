@@ -11,6 +11,7 @@ type ClickData = {
   gclid?: string;
   gbraid?: string;
   wbraid?: string;
+  fbclid?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -56,10 +57,31 @@ function row(label: string, value: string) {
 const esc = (s: unknown) =>
   String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+type ContactPayload = {
+  name?: string;
+  email?: string;
+  phone?: string;
+  message?: string;
+  company?: string;
+  website?: string;
+  projectType?: string;
+  budget?: string;
+  deadline?: string;
+  features?: string[];
+  description?: string;
+  /** Melyik űrlapról jött (hero, felugró ablak, /ajanlat, oldal alja) */
+  placement?: string;
+  leadId?: string;
+  /** Méz a robotoknak */
+  websiteUrl?: string;
+  click?: ClickData;
+};
+
 export async function POST(request: Request) {
+  let data: ContactPayload = {};
   try {
-    const data = await request.json();
-    const { name, email, phone, message, company, website, projectType, budget, deadline, features, source, description, leadId, websiteUrl } = data;
+    data = await request.json();
+    const { name, email, phone, message, company, website, projectType, budget, deadline, features, description, placement, leadId, websiteUrl } = data;
     const click: ClickData = data.click || {};
 
     // Méz: ha kitöltötték, robot volt. 200-zal válaszolunk, hogy ne
@@ -78,7 +100,7 @@ export async function POST(request: Request) {
 
     const isQuoteRequest = !!projectType || (typeof website === 'string' && website.length > 0);
     const subject = isQuoteRequest
-      ? `Új ajánlatkérés: ${name}`
+      ? `Új ajánlatkérés: ${name}${projectType ? ` (${projectType})` : ''}`
       : `Új üzenet: ${name}`;
 
     // Create transporter
@@ -110,16 +132,23 @@ export async function POST(request: Request) {
       projectType ? row('Projekt típusa', esc(projectType)) : '',
       budget ? row('Költségkeret', esc(budget)) : '',
       deadline ? row('Határidő', esc(deadline)) : '',
-      source ? row('Forrás', esc(source)) : '',
+      placement ? row('Melyik űrlap', esc(placement)) : '',
       Array.isArray(features) && features.length > 0 ? row('Kért funkciók', features.map(esc).join(', ')) : '',
     ].join('');
 
-    /* Marketing-blokk: honnan jött ez a lead. */
+    /* Marketing-blokk: honnan jött ez a lead. A Meta-hirdetéseknél az
+       utm_source=facebook paraméter dönt; a puszta fbclid organikus
+       Facebook-linknél is ott van, ezért azt külön jelöljük. */
+    const utmSource = (click.utm_source || '').toLowerCase();
     const adSource = click.gclid || click.gbraid || click.wbraid
       ? 'Google Ads (fizetett kattintás)'
-      : click.utm_source
-        ? esc(click.utm_source)
-        : 'Organikus / közvetlen';
+      : /facebook|instagram|^fb$|^ig$|^meta$/.test(utmSource)
+        ? `Facebook / Instagram${click.utm_medium ? ` (${esc(click.utm_medium)})` : ''}`
+        : click.utm_source
+          ? esc(click.utm_source)
+          : click.fbclid
+            ? 'Facebook / Instagram (link)'
+            : 'Organikus / közvetlen';
 
     const marketingRows = [
       row('Csatorna', adSource),
@@ -195,10 +224,11 @@ export async function POST(request: Request) {
 
     const userHtml = shell(userInner, 'Megkaptuk az üzeneted, 24 órán belül jelentkezünk.');
 
-    // Csak az admin-értesítőt várjuk meg, hogy gyors legyen a válasz
+    // Csak az admin-értesítőt várjuk meg, hogy gyors legyen a válasz.
+    // LEAD_NOTIFY_TO: opcionális külön címzett(ek), vesszővel elválasztva.
     await transporter.sendMail({
       from: `"Nexuscode" <${emailUser}>`,
-      to: emailUser,
+      to: process.env.LEAD_NOTIFY_TO || emailUser,
       replyTo: email,
       subject: subject,
       html: adminHtml,
@@ -224,7 +254,9 @@ export async function POST(request: Request) {
     );
 
   } catch (error) {
-    console.error('Error processing request:', error);
+    // Az érdeklődő adatai is a naplóba kerülnek, így a Vercel-logból
+    // akkor is visszaszerezhető, ha a levél nem ment ki
+    console.error('Ajánlatkérés küldési hiba:', error, JSON.stringify(data));
     return NextResponse.json(
       { error: 'Szerver hiba' },
       { status: 500 }

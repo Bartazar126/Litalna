@@ -4,7 +4,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[color:var(--petrol)] border-t border-white/10">
+    // Mobilon alul hely marad a lebegő hívás/ajánlat sávnak
+    <footer className="bg-[color:var(--petrol)] border-t border-white/10 pb-[76px] lg:pb-0">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-14">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
           {/* Márka */}

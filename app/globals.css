@@ -276,6 +276,153 @@ select.field option[value=""] {
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
 }
 
+/* Fehér gomb a sötét sávokra (fejléc) */
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: #fff;
+  color: var(--primary-strong);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-white:hover {
+  background: #eef0ff;
+}
+
+.btn-white:active {
+  transform: scale(0.98);
+}
+
+/* ---------- ajánlatkérő űrlap ---------- */
+
+.lead-q {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 0.75rem;
+  outline: none;
+}
+
+.lead-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  text-align: left;
+  padding: 0.85rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--hairline-strong);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lead-tile:hover {
+  border-color: var(--primary);
+  background: #f7f6ff;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -14px rgba(79, 70, 229, 0.55);
+}
+
+.lead-tile:active {
+  transform: scale(0.98);
+}
+
+.lead-tile.is-on {
+  border-color: var(--primary);
+  background: #f3f2ff;
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.lead-tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--primary-dim);
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.step-in {
+  animation: step-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lead-backdrop {
+  animation: backdrop-in 0.25s ease both;
+}
+
+/* Mobilon alulról csúszik fel, nagyobb kijelzőn középen jelenik meg */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.lead-sheet {
+  animation: sheet-up 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 640px) {
+  .lead-sheet {
+    animation: dialog-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-in,
+  .lead-backdrop,
+  .lead-sheet {
+    animation: none;
+  }
+  .lead-tile:hover {
+    transform: none;
+  }
+}
+
 /* Blogcikk-tipográfia */
 .article-body {
   color: var(--foreground);

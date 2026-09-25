@@ -14,6 +14,10 @@ export const ADS_ID = 'AW-18422187691';
 export const ADS_LEAD_LABEL = 'yVHaCOHhxewcEKuNsdBE';
 export const ADS_LEAD_SEND_TO = `${ADS_ID}/${ADS_LEAD_LABEL}`;
 
+/* A Meta Pixel (adatkészlet) azonosítója az Eseménykezelőből.
+   Amíg üres, a Pixel nem töltődik be, és Meta-esemény sem megy ki. */
+export const META_PIXEL_ID = '';
+
 /* Egy ajánlatkérés becsült üzleti értéke forintban, amikor nem tudjuk,
    mekkora projektről van szó (pl. a főoldali rövid űrlap). */
 export const LEAD_VALUE_HUF = 20000;
@@ -33,6 +37,9 @@ const BUDGET_MIDPOINT_HUF: Record<string, number> = {
   '500 ezer Ft felett': 700000,
   'Még nem tudom, ezért kérek ajánlatot': 150000,
 };
+
+/** Az űrlap keretsávjai, pontosan a fenti kulcsokkal (ebből jön az érték). */
+export const BUDGETS = Object.keys(BUDGET_MIDPOINT_HUF);
 
 /** Az űrlapon választott keretsávból becsült lead-érték. */
 export function leadValueFromBudget(budget?: string) {
@@ -75,6 +82,7 @@ export type ClickData = {
   gclid?: string;
   gbraid?: string;
   wbraid?: string;
+  fbclid?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -99,7 +107,7 @@ export function captureClickIds(): ClickData {
 
   const p = new URLSearchParams(window.location.search);
   const fresh: ClickData = {};
-  (['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const).forEach(
+  (['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const).forEach(
     (k) => {
       const v = p.get(k);
       if (v) fresh[k] = v;
@@ -201,6 +209,17 @@ export function trackLead({ leadId, email, phone, name, budget, value }: LeadPay
     if (sessionStorage.getItem(FIRED_KEY) === leadId) return; // már elment
   } catch {}
 
+  // Meta Lead ugyanazzal az azonosítóval (a Meta ez alapján dedupál).
+  // A gtag előtt megy, hogy egy letiltott Google-címke ne vigye magával.
+  try {
+    if (sessionStorage.getItem(META_LEAD_KEY) !== leadId) {
+      meta('track', 'Lead', { value: leadValue, currency: 'HUF' }, { eventID: leadId });
+      sessionStorage.setItem(META_LEAD_KEY, leadId);
+    }
+  } catch {
+    meta('track', 'Lead', { value: leadValue, currency: 'HUF' }, { eventID: leadId });
+  }
+
   loadGtagNow();
   const g = gtag();
   if (!g) return;
@@ -252,6 +271,7 @@ export function trackLead({ leadId, email, phone, name, budget, value }: LeadPay
 
 /** Telefonhívás-kattintás: külön konverzió az Ads-ben. */
 export function trackPhoneClick(where: string) {
+  meta('track', 'Contact', { content_name: 'Telefon' });
   loadGtagNow();
   const g = gtag();
   if (!g) return;
@@ -262,4 +282,111 @@ export function trackPhoneClick(where: string) {
   });
   // Ha létrehozod az Ads-ben a "Telefonhívás" konverziót, ide jön a címkéje:
   // g('event', 'conversion', { send_to: `${ADS_ID}/XXXXXXXX` });
+}
+
+export function trackEmailClick(where: string) {
+  meta('track', 'Contact', { content_name: 'Email' });
+  gtag()?.('event', 'email_click', {
+    send_to: GA4_ID,
+    event_category: 'engagement',
+    event_label: where,
+  });
+}
+
+/** Az első koppintás az ajánlatkérőn (munkamenetenként egyszer). Ebből
+ *  látszik, hányan kezdik el, és hányan küldik el ténylegesen. */
+export function trackFormStart(placement: string) {
+  try {
+    if (sessionStorage.getItem('ncx_form_started')) return;
+    sessionStorage.setItem('ncx_form_started', '1');
+  } catch {}
+  loadGtagNow(); // mire elküldi, a könyvtár már itt legyen
+  meta('trackCustom', 'LeadFormStart', { placement });
+  gtag()?.('event', 'lead_form_start', { send_to: GA4_ID, form_placement: placement });
+}
+
+/* ---------------------------------------------------------------- *
+ * 4. Meta Pixel                                                     *
+ * ---------------------------------------------------------------- */
+
+/* Csak sütihozzájárulással töltődik be (GDPR). Az elfogadás előtt
+   történt eseményeket (pl. ajánlatkérés, mielőtt a látogató a süti-sávra
+   kattintott) félretesszük, és a Pixel betöltésekor pótoljuk. */
+
+type FbqStub = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue: unknown[][];
+  push: unknown;
+  loaded: boolean;
+  version: string;
+};
+
+const META_QUEUE_KEY = 'ncx_meta_queue';
+const META_LEAD_KEY = 'ncx_meta_lead';
+let metaLoaded = false;
+
+export function cookieConsent(): 'accepted' | 'declined' | null {
+  try {
+    const v = localStorage.getItem('cookieConsent');
+    return v === 'accepted' || v === 'declined' ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+export function loadMetaPixel() {
+  if (!META_PIXEL_ID || metaLoaded || cookieConsent() !== 'accepted') return;
+  metaLoaded = true;
+
+  // A hivatalos Meta-beágyazókód, TypeScriptben
+  const w = window as unknown as { fbq?: FbqStub; _fbq?: FbqStub };
+  if (!w.fbq) {
+    const n = function (...args: unknown[]) {
+      if (n.callMethod) n.callMethod(...args);
+      else n.queue.push(args);
+    } as FbqStub;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+    w.fbq = n;
+    if (!w._fbq) w._fbq = n;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(s);
+  }
+
+  const fbq = w.fbq;
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+  try {
+    const queued = JSON.parse(sessionStorage.getItem(META_QUEUE_KEY) || '[]') as unknown[][];
+    queued.forEach((args) => fbq(...args));
+    sessionStorage.removeItem(META_QUEUE_KEY);
+  } catch {}
+}
+
+function meta(...args: unknown[]) {
+  if (!META_PIXEL_ID || typeof window === 'undefined') return;
+  const consent = cookieConsent();
+  if (consent === 'declined') return;
+  if (consent === 'accepted') {
+    loadMetaPixel();
+    (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq?.(...args);
+    return;
+  }
+  // Még nincs döntés a sütikről: félretesszük, elfogadáskor pótoljuk
+  try {
+    const q = JSON.parse(sessionStorage.getItem(META_QUEUE_KEY) || '[]') as unknown[][];
+    q.push(args);
+    sessionStorage.setItem(META_QUEUE_KEY, JSON.stringify(q));
+  } catch {}
+}
+
+/** Elutasításkor a félretett Meta-események is törlődnek. */
+export function dropMetaQueue() {
+  try {
+    sessionStorage.removeItem(META_QUEUE_KEY);
+  } catch {}
 }

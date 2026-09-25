@@ -1,50 +1,48 @@
-import { ArrowRight } from 'lucide-react';
 import HeroPlexus from './HeroPlexus';
 import HeroCube from './HeroCube';
+import LeadForm from '@/components/lead/LeadForm';
+import { RatingChip } from '@/components/GoogleProof';
 
+/* Konverziós hero: bal oldalt az ajánlat (mit, mennyiért, mennyi idő
+   alatt), jobb oldalt rögtön az ajánlatkérő. A márka-kocka a kártya
+   mögül bukkan elő. */
+
+const perks = ['Díjmentes konzultáció', 'Fix ár, írásban', 'Nincs kötelező havidíj'];
 
 export default function Hero() {
   return (
-    <section className="relative pt-16 pb-12 md:pb-20 overflow-hidden" style={{ background: 'var(--hero-grad)' }}>
+    <section className="relative pt-16 pb-24 md:pb-36 overflow-hidden" style={{ background: 'var(--hero-grad)' }}>
       <HeroPlexus />
 
       <div className="relative max-w-[1240px] mx-auto px-5 sm:px-8">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center py-16 md:py-24 min-h-[560px]">
-          {/* Bal: üzenet */}
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_440px] gap-7 sm:gap-9 lg:gap-14 items-center pt-7 md:pt-14 lg:pt-20">
+          {/* Bal: az ajánlat */}
           <div className="relative z-10 text-center lg:text-left">
-            <p className="rise text-[11px] sm:text-[12px] font-semibold tracking-[0.3em] uppercase text-white/50 mb-5">
-              Nexuscode <span className="text-[#b3a6ff]">·</span> Digital Technology Studio
-            </p>
+            <RatingChip href="#velemenyek" className="rise mb-5 sm:mb-6" />
+
             {/* Az LCP-elem: nem animáljuk, hogy azonnal fessen.
                 A címsor a fő célkulcsszót is tartalmazza ("weboldal"):
                 a title után ez a legerősebb jelzés a Google felé. */}
-            <h1 className="font-display text-[2.4rem] leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem] font-semibold text-white mb-5">
-              Weboldal, ami ügyfeleket hoz.
-              <br />
-              <span className="text-[#c7bfff]">Nem csak szép lesz — dolgozni fog.</span>
+            <h1 className="font-display text-[2.15rem] leading-[1.08] sm:text-[3.1rem] lg:text-[3.45rem] font-semibold text-white text-balance mb-4 sm:mb-5">
+              Weboldal, ami <br className="hidden sm:block" />
+              ügyfeleket hoz.
+              <span className="block text-[#c7bfff]">
+                Fix áron, <span className="whitespace-nowrap">1–2 hét alatt.</span>
+              </span>
             </h1>
-            <p className="rise rise-1 text-[19px] sm:text-[22px] text-white/90 font-light leading-snug max-w-[26ch] mx-auto lg:mx-0 mb-4">
-              Weboldal, szoftver és marketing, egy kézben.
+
+            <p className="rise rise-1 text-[16px] sm:text-[18px] text-white/80 leading-relaxed max-w-[31rem] mx-auto lg:mx-0 mb-4 sm:mb-5">
+              Megtervezzük, elkészítjük és elindítjuk. Te csak jóváhagysz, minden mást mi intézünk.
             </p>
 
-            <p className="rise rise-1 text-[15px] sm:text-base text-white/70 max-w-[30rem] mx-auto lg:mx-0 mb-9 leading-relaxed">
-              Ma már minden vállalkozásnak szüksége van jó weboldalra. Mi
-              megtervezzük, elkészítjük, és látogatókat is szerzünk rá.
+            <p className="rise rise-2 text-[15.5px] sm:text-[17px] text-white sm:mb-7">
+              Céges weboldal már <strong className="font-semibold text-[#ffd66b]">80 000 Ft-tól</strong>, egyszeri
+              díjjal.
             </p>
 
-            <div className="rise rise-2 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-10">
-              <a href="/ajanlat" className="btn-primary !px-8 !py-3.5">
-                Kérj ajánlatot
-                <ArrowRight size={17} />
-              </a>
-              <a href="#munkaink" className="btn-outline-white !px-8 !py-3.5">
-                Munkáink
-              </a>
-            </div>
-
-            <div className="rise rise-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-sm text-white/75">
-              {['Díjmentes konzultáció', 'Fix ár, fix határidő', '1–2 hét átfutás'].map((t) => (
-                <span key={t} className="inline-flex items-center gap-2">
+            <ul className="rise rise-3 hidden sm:flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-sm text-white/80">
+              {perks.map((t) => (
+                <li key={t} className="inline-flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
                     <path
                       d="M2.5 7.5 L5.5 10.5 L11.5 3.5"
@@ -56,29 +54,35 @@ export default function Hero() {
                     />
                   </svg>
                   {t}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             {/* Stúdió-szignó */}
-            <p className="rise rise-4 flex items-center justify-center lg:justify-start gap-3 mt-9">
-              <span className="hidden sm:block w-7 h-[2px] rounded-full" style={{ background: 'var(--brand-gradient)' }} aria-hidden />
-              <span className="font-display text-[13.5px] sm:text-[14.5px] text-white/55 tracking-wide">
+            <p className="rise rise-4 hidden lg:flex items-center gap-3 mt-10">
+              <span className="w-7 h-[2px] rounded-full" style={{ background: 'var(--brand-gradient)' }} aria-hidden />
+              <span className="font-display text-[14px] text-white/55 tracking-wide">
                 Nem csak weboldalakat építünk. A jövőt építjük.
               </span>
             </p>
           </div>
 
-          {/* Jobb: 3D kocka */}
-          <div className="rise rise-2 relative flex justify-center lg:justify-end lg:pr-6">
-            <HeroCube />
+          {/* Jobb: ajánlatkérő, mögötte a márka-kocka */}
+          <div className="relative rise rise-2 lg:mt-10">
+            <div className="hidden lg:block absolute -top-[118px] -left-[150px] scale-[0.6] origin-top-left pointer-events-none" aria-hidden>
+              <HeroCube />
+            </div>
+            <LeadForm
+              placement="főoldal teteje"
+              className="relative z-10 !shadow-[0_34px_80px_-24px_rgba(10,8,45,0.65)] !border-white/60"
+            />
           </div>
         </div>
       </div>
 
       {/* Hullámos átmenet a következő szekcióba */}
       <svg
-        className="absolute bottom-0 left-0 w-full h-[90px] md:h-[150px] pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-[70px] md:h-[120px] pointer-events-none"
         viewBox="0 0 1440 160"
         preserveAspectRatio="none"
         aria-hidden

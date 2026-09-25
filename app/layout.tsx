@@ -3,6 +3,9 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import StructuredData from '@/components/StructuredData';
 import CookieConsent from '@/components/CookieConsent';
+import SiteTracking from '@/components/lead/SiteTracking';
+import LeadModal from '@/components/lead/LeadModal';
+import StickyCta from '@/components/lead/StickyCta';
 import Script from 'next/script';
 
 const inter = Inter({
@@ -147,6 +150,7 @@ export default function RootLayout({
 
               gtag('js', new Date());
               gtag('config', 'G-DK6GNH27QV', { 'send_page_view': false });
+              // Fokozott konverziómérés: az űrlap email/telefon adatával pontosabb a hirdetés-mérés
               gtag('config', 'AW-18422187691', { 'allow_enhanced_conversions': true });
               setTimeout(function() {
                 gtag('event', 'page_view', { 'send_to': 'G-DK6GNH27QV' });
@@ -176,6 +180,9 @@ export default function RootLayout({
         />
 
         {children}
+        <LeadModal />
+        <StickyCta />
+        <SiteTracking />
         <CookieConsent />
       </body>
     </html>

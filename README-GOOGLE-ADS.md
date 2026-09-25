@@ -82,11 +82,10 @@ látogató elutasítja a sütiket.
 
 > A konverziós művelet beállításai:
 > - **Számlálás: Egy** (egy ajánlatkérő egy lead, nem kettő)
-> - **Érték:** a kód most 20.000 Ft-ot küld leadenként. Ezt írd át arra,
->   amennyit egy ajánlatkérés nálad tényleg ér:
->   *átlagos projektméret × hány százalékból lesz ügyfél*.
->   (Pl. 200.000 Ft átlag × 10% zárás = 20.000 Ft.)
->   A számot a `lib/tracking.ts` fájl `LEAD_VALUE_HUF` sorában tudod állítani.
+> - **Érték:** a kód az űrlapon választott keretsávból számolja
+>   (sávközép × `CLOSE_RATE`, alapból 10%); keret nélkül `LEAD_VALUE_HUF`
+>   (20.000 Ft) megy. Ha kiderül a valós zárási arányod, a `lib/tracking.ts`
+>   fájl `CLOSE_RATE` sorát állítsd át.
 > - **Elsődleges művelet**, hogy az ajánlattétel erre optimalizáljon.
 
 ### 2.7. Hirdetésütemezés
@@ -307,3 +306,41 @@ Ettől a Google már nem az űrlapkitöltésre optimalizál, hanem a **megkötö
 - **Blog**: a cikkek eddig technikai hiba miatt nem kerülhettek be a
   Google találatai közé (mindegyik a főoldalra kanonizált). Ezt javítottam,
   de az indexelés heteket vesz igénybe.
+
+---
+
+## 10. Meta (Facebook/Instagram) hirdetések és a Pixel
+
+**Az ajánlatkérő (2026. szeptember 25-től):** mindenhol ugyanaz a 3 lépéses,
+koppintós űrlap fut (hero, felugró ablak, `/ajanlat`, oldal alja):
+1. Mire van szükséged? (6 csempe)
+2. Milyen keretben gondolkodsz? (a keretsávból számolódik a lead értéke, lásd `leadValueFromBudget`)
+3. Név, e-mail, telefon, nem kötelező megjegyzés
+
+Árkártyáról nyitva a csomagból a keret is következik, onnan egyből a 3. lépés jön.
+
+**Pixel beállítása:**
+1. Meta Eseménykezelő → új adatkészlet (Pixel) létrehozása.
+2. Az azonosítót írd a `lib/tracking.ts` `META_PIXEL_ID` sorába, majd élesítés.
+3. Kapcsold be az *automatikus bővített egyeztetést*.
+
+A Pixel csak a süti-hozzájárulás után töltődik be (GDPR). Az elfogadás előtt
+történt eseményeket az oldal félreteszi, és elfogadáskor pótolja.
+
+| Esemény | Mikor |
+| --- | --- |
+| `PageView` | oldalbetöltés (hozzájárulás után) |
+| `Lead` | sikeres ajánlatkérés, a Google-konverzióval azonos azonosítóval és értékkel |
+| `Contact` | telefonszámra vagy e-mail-címre kattintás |
+| `LeadFormStart` (egyéni) | az első koppintás az űrlapon |
+
+**Céloldal:** `https://www.nexuscode.hu/` (hero-ban az űrlap) vagy közvetlenül
+`https://www.nexuscode.hu/ajanlat`. Webáruház-kampánynál
+`/ajanlat?szolgaltatas=webaruhaz` (az űrlap a keret-kérdésnél nyílik).
+
+**URL-paraméterek** a hirdetés szintjén (ebből írja ki a levél „HONNAN JÖTT”
+blokkja a kampányt és a hirdetést):
+
+```text
+utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
+```

@@ -4,6 +4,7 @@ import Reveal from './Reveal';
 const plans = [
   {
     name: 'Alap',
+    href: '/ajanlat?szolgaltatas=weboldal&csomag=alap',
     price: '80 000 Ft-tól',
     ideal: 'Landing page, bemutatkozó oldal',
     features: ['1–5 aloldal', 'Egyedi, reszponzív design', 'SEO-alapok', 'Analitika bekötve', '1 hét átfutás'],
@@ -11,6 +12,7 @@ const plans = [
   },
   {
     name: 'Prémium',
+    href: '/ajanlat?szolgaltatas=weboldal&csomag=premium',
     price: '149 990 Ft-tól',
     ideal: 'Vállalati weboldal, portfólió',
     features: ['5–15 aloldal', 'Komplex, egyedi design', 'Teljes SEO-csomag', 'Blog + admin felület', '1–2 hét átfutás'],
@@ -18,6 +20,7 @@ const plans = [
   },
   {
     name: 'Webshop',
+    href: '/ajanlat?szolgaltatas=webaruhaz&csomag=webshop',
     price: '424 990 Ft-tól',
     ideal: 'Online értékesítés',
     features: ['Online fizetés (Stripe/Barion)', 'Készlet- és rendeléskezelés', 'Kuponok, értékelések', 'Email-automatizálás', '2–3 hét átfutás'],
@@ -66,14 +69,23 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <a href="/ajanlat" className={plan.highlighted ? 'btn-primary w-full' : 'btn-secondary w-full'}>
-                  Ajánlatot kérek
+                <a href={plan.href} className={plan.highlighted ? 'btn-primary w-full' : 'btn-secondary w-full'}>
+                  Ezt kérem
                   <ArrowRight size={16} />
                 </a>
               </div>
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <p className="text-center text-[14.5px] text-[color:var(--muted)] mt-10">
+            Nem tudod, melyik kell?{' '}
+            <a href="/ajanlat" className="font-semibold text-[color:var(--primary)] hover:underline underline-offset-4">
+              Írd meg, mire van szükséged, és segítünk választani.
+            </a>
+          </p>
+        </Reveal>
       </div>
     </section>
   );

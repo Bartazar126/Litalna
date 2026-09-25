@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ArrowRight } from 'lucide-react';
 
 const navItems = [
-  { name: 'Főoldal', href: '/' },
   { name: 'Munkáink', href: '/#munkaink' },
-  { name: 'Szolgáltatások', href: '/#szolgaltatasok' },
+  { name: 'Vélemények', href: '/#velemenyek' },
   { name: 'Webáruház', href: '/webaruhaz-keszites' },
   { name: 'Árak', href: '/#arak' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Kapcsolat', href: '/#kapcsolat' },
+  { name: 'Szolgáltatások', href: '/#szolgaltatasok' },
+  // Keskenyebb asztali kijelzőn (1024–1279 px) nem fér el a gomb mellett
+  { name: 'Blog', href: '/blog', xlOnly: true },
 ];
 
 export default function Header({ current = 'Főoldal' }: { current?: string }) {
@@ -50,7 +50,9 @@ export default function Header({ current = 'Főoldal' }: { current?: string }) {
               <a
                 key={item.name}
                 href={item.href}
-                className={`px-3.5 py-2 rounded text-[13.5px] font-medium transition-colors duration-200 ${
+                className={`px-3 py-2 rounded text-[13.5px] font-medium transition-colors duration-200 ${
+                  item.xlOnly ? 'hidden xl:inline-block' : ''
+                } ${
                   item.name === current
                     ? 'bg-[color:var(--primary)] text-white'
                     : 'text-white/80 hover:text-white hover:bg-white/10'
@@ -61,14 +63,30 @@ export default function Header({ current = 'Főoldal' }: { current?: string }) {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            {/* Telefon: mobilon ikon, széles kijelzőn a szám is */}
             <a
               href="tel:+36302697632"
-              className="flex items-center justify-center w-10 h-10 rounded-full text-white/85 hover:text-white hover:bg-white/10 transition-colors"
+              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors"
               aria-label="Hívás: 06 30 269 7632"
             >
               <Phone size={19} />
             </a>
+            <a
+              href="tel:+36302697632"
+              className="hidden xl:inline-flex items-center gap-2 px-2 text-[13.5px] font-semibold text-white/90 hover:text-white transition-colors"
+            >
+              <Phone size={16} className="text-[#b3a6ff]" />
+              06 30 269 7632
+            </a>
+
+            {/* A btn-* osztályok felülírnák a hidden-t, ezért külön burok */}
+            <span className="hidden sm:inline-flex">
+              <a href="/ajanlat" className="btn-white whitespace-nowrap">
+                Ingyenes ajánlat
+                <ArrowRight size={15} />
+              </a>
+            </span>
 
             {/* Mobil menü gomb */}
             <button
@@ -85,7 +103,7 @@ export default function Header({ current = 'Főoldal' }: { current?: string }) {
         {/* Mobil menü */}
         <div
           className="lg:hidden overflow-hidden transition-all duration-300 ease-out"
-          style={{ maxHeight: open ? '480px' : '0px', opacity: open ? 1 : 0 }}
+          style={{ maxHeight: open ? '520px' : '0px', opacity: open ? 1 : 0 }}
         >
           <div className="py-4 border-t border-white/15 flex flex-col gap-1">
             {navItems.map((item) => (
@@ -98,8 +116,16 @@ export default function Header({ current = 'Főoldal' }: { current?: string }) {
                 {item.name}
               </a>
             ))}
-            <a href="/ajanlat" onClick={() => setOpen(false)} className="btn-primary mt-3 mb-2 w-full">
-              Ajánlatkérés
+            <a href="/ajanlat" onClick={() => setOpen(false)} className="btn-primary mt-3 w-full">
+              Ingyenes ajánlatot kérek
+            </a>
+            <a
+              href="tel:+36302697632"
+              onClick={() => setOpen(false)}
+              className="btn-outline-white mb-2 w-full"
+            >
+              <Phone size={16} />
+              Hívás: 06 30 269 7632
             </a>
           </div>
         </div>

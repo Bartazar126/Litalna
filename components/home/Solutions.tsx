@@ -113,7 +113,7 @@ export default function Solutions() {
               meg, odáig, hogy hogyan dolgozol.
             </p>
             <a href="/ajanlat" className="btn-primary">
-              Ismerd meg a megoldásainkat
+              Beszéljük át, mire van szükséged
               <ArrowRight size={16} />
             </a>
           </Reveal>

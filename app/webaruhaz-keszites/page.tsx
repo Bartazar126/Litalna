@@ -4,7 +4,6 @@ import { ArrowRight, Check, Clock, CreditCard, Package, Phone, Search, ShieldChe
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
-import MobileCtaBar from '@/components/MobileCtaBar';
 
 export const metadata: Metadata = {
   title: 'Webáruház készítés 424 990 Ft-tól | Nexuscode',
@@ -139,7 +138,7 @@ export default function WebaruhazKeszitesPage() {
           </h2>
           <p className="text-[15.5px] text-[color:var(--muted)] leading-relaxed max-w-[46rem] mb-10">
             Nem sablont húzunk rád. Azt építjük meg, amire a te termékeidhez és a te
-            működésedhez szükség van — és amit utána magad is tudsz kezelni.
+            működésedhez szükség van, és amit utána magad is tudsz kezelni.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -204,7 +203,7 @@ export default function WebaruhazKeszitesPage() {
                 </ul>
               </div>
               <div className="flex flex-col gap-3 md:min-w-[220px]">
-                <Link href="/ajanlat" className="btn-primary !py-3.5 justify-center">
+                <Link href="/ajanlat?szolgaltatas=webaruhaz" className="btn-primary !py-3.5 justify-center">
                   Ingyenes ajánlatot kérek
                   <ArrowRight size={17} />
                 </Link>
@@ -240,7 +239,7 @@ export default function WebaruhazKeszitesPage() {
             </h2>
             <p className="text-[14.5px] text-white/70 max-w-[34rem] mx-auto mb-7 leading-relaxed">
               Írd meg, mit árulsz és kiknek. Ha kiderül, hogy egy egyszerűbb oldal is
-              elég, azt fogjuk mondani — nem adunk el neked feleslegeset.
+              elég, azt fogjuk mondani: nem adunk el neked feleslegeset.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/ajanlat" className="btn-primary !bg-white !text-[#2f2b66] hover:!bg-white/90">
@@ -256,7 +255,6 @@ export default function WebaruhazKeszitesPage() {
       </main>
 
       <Footer />
-      <MobileCtaBar />
     </div>
   );
 }

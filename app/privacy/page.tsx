@@ -22,7 +22,7 @@ export default function PrivacyPage() {
     <div className="bg-white">
       <Header current="" />
 
-      <PageHero label="Jogi információk" title="Adatvédelmi nyilatkozat" lead="Utoljára frissítve: 2026. január 31." />
+      <PageHero label="Jogi információk" title="Adatvédelmi nyilatkozat" lead="Utoljára frissítve: 2026. szeptember 25." />
 
       <main className="max-w-[760px] mx-auto px-5 sm:px-8 pb-20 md:pb-28 pt-2 md:pt-6">
         <div className="space-y-10">
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section>
+          <section id="cookies" className="scroll-mt-24">
             <h2 className={h2}>5. Cookie-k (sütik)</h2>
             <p className={`${p} mb-4`}>
               Weboldalunk cookie-kat használ a felhasználói élmény javítása érdekében. A cookie-k kis szöveges fájlok,
@@ -81,6 +81,14 @@ export default function PrivacyPage() {
               <div className="card p-5">
                 <h3 className="text-[14.5px] font-semibold text-[color:var(--heading)] mb-1">Analitikai cookie-k (Google Analytics)</h3>
                 <p className="text-[13.5px] text-[color:var(--muted)]">Segítenek megérteni, hogyan használják látogatóink az oldalt. Anonim statisztikák.</p>
+              </div>
+              <div className="card p-5">
+                <h3 className="text-[14.5px] font-semibold text-[color:var(--heading)] mb-1">Marketing cookie-k (Google Ads, Meta Pixel)</h3>
+                <p className="text-[13.5px] text-[color:var(--muted)]">
+                  Csak az Ön hozzájárulásával töltődnek be. Segítenek mérni, hogy Google-, Facebook- és
+                  Instagram-hirdetéseink közül melyikből érkezik ajánlatkérés, és hogy hirdetéseink az érdeklődő
+                  vállalkozásoknak jelenjenek meg.
+                </p>
               </div>
             </div>
           </section>
@@ -100,6 +108,20 @@ export default function PrivacyPage() {
                 Google Adatvédelmi Szabályzat
               </a>
             </p>
+            <p className={`${p} mt-3`}>
+              Hozzájárulás esetén a Google Ads konverziómérését és a Meta Pixelt (Meta Platforms Ireland Ltd.) is
+              használjuk. Ha ajánlatot kér, az űrlapon megadott e-mail címét és telefonszámát a Google titkosított
+              (hash-elt) formában kaphatja meg, kizárólag a hirdetések mérésének pontosításához.
+              További információ:{' '}
+              <a
+                href="https://www.facebook.com/privacy/policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[color:var(--primary)] hover:underline underline-offset-4"
+              >
+                Meta Adatvédelmi Szabályzat
+              </a>
+            </p>
           </section>
 
           <section>
@@ -111,6 +133,7 @@ export default function PrivacyPage() {
             <ul className={`${list} mt-3`}>
               <li>Jogi kötelezettség esetén (bíróság, hatóság megkeresésére)</li>
               <li>Szolgáltatásaink működéséhez szükséges partnerek (pl. tárhely szolgáltató)</li>
+              <li>Hirdetésmérési partnerek (Google, Meta), kizárólag a marketing cookie-k elfogadása esetén</li>
               <li>Az Ön kifejezett hozzájárulásával</li>
             </ul>
           </section>

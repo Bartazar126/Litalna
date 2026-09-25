@@ -21,7 +21,8 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    // A hibák maradjanak a Vercel-naplóban (pl. ha nem megy ki egy ajánlatkérő levél)
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
   
   // Experimental features for better performance
