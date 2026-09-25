@@ -319,10 +319,15 @@ koppintós űrlap fut (hero, felugró ablak, `/ajanlat`, oldal alja):
 
 Árkártyáról nyitva a csomagból a keret is következik, onnan egyből a 3. lépés jön.
 
-**Pixel beállítása:**
-1. Meta Eseménykezelő → új adatkészlet (Pixel) létrehozása.
-2. Az azonosítót írd a `lib/tracking.ts` `META_PIXEL_ID` sorába, majd élesítés.
-3. Kapcsold be az *automatikus bővített egyeztetést*.
+**Pixel (beállítva 2026. szeptember 25.):** „Nexuscode weboldal” adatkészlet,
+azonosító `1432517962175858`, a **Nexuscode** üzleti portfólióban (nem a
+Garda Levente személyes fiókban; a keletillat.hu pixele külön marad).
+Az azonosító a `lib/tracking.ts` `META_PIXEL_ID` sorában van.
+
+A hirdetések indítása előtt kell még: egy Nexuscode Facebook-oldal (a hirdetésen
+ennek a neve látszik) és egy hirdetési fiók a Nexuscode portfólióban.
+Opcionális: *automatikus bővített egyeztetés* (ha bekapcsolod, az adatkezelési
+tájékoztatóban a Metát is említeni kell a titkosított e-mail/telefon adatnál).
 
 A Pixel csak a süti-hozzájárulás után töltődik be (GDPR). Az elfogadás előtt
 történt eseményeket az oldal félreteszi, és elfogadáskor pótolja.

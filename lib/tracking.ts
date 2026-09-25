@@ -14,9 +14,10 @@ export const ADS_ID = 'AW-18422187691';
 export const ADS_LEAD_LABEL = 'yVHaCOHhxewcEKuNsdBE';
 export const ADS_LEAD_SEND_TO = `${ADS_ID}/${ADS_LEAD_LABEL}`;
 
-/* A Meta Pixel (adatkészlet) azonosítója az Eseménykezelőből.
-   Amíg üres, a Pixel nem töltődik be, és Meta-esemény sem megy ki. */
-export const META_PIXEL_ID = '';
+/* A Meta Pixel (adatkészlet) azonosítója az Eseménykezelőből:
+   "Nexuscode weboldal", a Nexuscode üzleti portfólióban.
+   Üresre állítva a Pixel nem töltődik be, és Meta-esemény sem megy ki. */
+export const META_PIXEL_ID = '1432517962175858';
 
 /* Egy ajánlatkérés becsült üzleti értéke forintban, amikor nem tudjuk,
    mekkora projektről van szó (pl. a főoldali rövid űrlap). */
